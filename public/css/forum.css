@@ -1,0 +1,257 @@
+	*{
+		margin: 0;
+		padding: 0;
+		font-family: "Microsoft YaHei";
+	}
+	a{
+		text-decoration: none;
+	}
+	.top a{
+		color: #fff;
+	}
+	.top a:hover{
+		text-decoration: underline;
+		color: #269f42;
+	}
+	ul{
+		list-style: none;
+	}
+	
+	.main{
+		min-width: 1150px;
+		width: 1150px;
+		margin: 0 auto;
+	}
+	.top{
+		height: 60px;
+		line-height: 60px;
+		background: #24292e;
+		color: #fff;
+	}
+	.top .nav{
+		float: left;
+		width: 500px;
+	}
+	.top .nav img{
+		float: left;
+		position: relative;
+		top: 15px;
+		margin-right: 20px;
+	}
+	.top .nav li{
+		float: left;
+		margin-left: 25px;
+		font-size: 15px;
+	}
+	.nav li .active{
+		color: #269f42;
+	}
+
+	.content{
+		padding: 20px 0;
+		background: #f1f1f1;
+		overflow: hidden;
+	}
+	.content .main-left{
+		width: 770px;
+		float: left;
+	}
+	.tab .tab-title {
+	    height: 50px;
+	    border-bottom: 1px dotted #E9E9E9;
+	    background-color: #F9F9F9;
+	    border-radius: 2px 2px 0 0;
+	    position: relative;
+	}
+	.tab .tab-title li{
+		width: 85px;
+		line-height: 50px;
+		text-align: center;
+		float: left;
+	}
+	.tab .tab-title li a{
+		color: #333;
+		font-size: 15px;
+	}
+	.tab .tab-title li a:hover{
+		color: #999;
+	}
+	.tab .tab-title .on{
+		border-bottom: 2px solid #269f42;
+	}
+	.tab .tab-title input{
+		position: absolute;
+		font-size: 14px;
+		top: 7px;
+		right: 60px;
+		width: 226px;
+		padding: 7px 0px 7px 10px;
+		border-radius: 5px;
+		border: 1px solid #d1d5da;
+		box-shadow: inset 0 1px 2px rgba(27,31,35,0.075);
+	}
+	.tab .tab-title img{
+		width: 30px;
+		position: absolute;
+		right: 0px;
+		top: 6px;
+		cursor: pointer;
+		padding: 4px 15px;
+	}
+	.tab .tab-title img:hover{
+		background: #eee;
+	}
+	
+	.tab .tab-content {
+		clear: both;
+		background: #fff;
+	}
+	.tab .tab-content li{
+		height: 60px;
+		border: 1px solid #eee;
+		border-top: none;
+		padding: 10px 0px 0px 10px;
+	}
+	.tab .tab-content li img{
+		width: 50px;
+		float: left;
+		margin-right: 10px;
+	}
+	.tab .tab-content li a{
+		color: #333;
+		font-size: 15px;
+		font-weight: lighter;
+	}
+	.tab .tab-content li a:hover{
+		color: #269f42;
+	}
+	.tab .tab-content li h2{
+	    max-width: 86%;
+	    margin-top: 5px;
+	    margin-right: 10px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    font-size: 16px;
+	    color: #333;
+	}
+	.tab .tab-content li h2 span{
+		color: #fff;
+		display: inline-block;
+		width: 50px;
+		text-align: center;
+		font-size: 13px;
+		line-height: 22px;
+		margin-left: 15px;
+	}
+	.tab .tab-content li h2 .stick{
+		background-color: #393D49;
+	}
+	.tab .tab-content li h2 .jing{
+		background-color: #FF5722;
+	}
+	.tab .tab-content li p{
+		font-size: 12px;
+		margin-top: 4px;
+		color: #999;
+	}
+	.tab .tab-content li p a{
+		font-size: 12px;
+		color: #999;
+	}
+	.tab .tab-content li p span{
+		margin-right: 15px;
+		display: inline-block;
+	}
+	.tab .tab-content li p .hint{
+		float: right;
+	}
+	.tab .tab-content li p img{
+		width: 15px;
+		display: block;
+		position: relative;
+		top: 2px;
+	}
+	.button{
+		display: block;
+		width: 200px;
+		height: 40px;
+		background-color: #269f42;
+		color: #fff;
+		border: none;
+		font-size: 15px;
+		cursor: pointer;
+		opacity: 0.8;
+		filter: Alpha(opacity=80);
+	}
+	.button:focus{
+		outline: none;
+	}
+	.button:hover{
+		opacity: 0.6;
+		filter: Alpha(opacity=60);
+	}
+
+	.content .main-right{
+		width: 336px;
+		float: right;
+	}
+	.main-right .rank{
+		margin-top: 10px;
+	}
+	.rank .rank-title{
+		line-height: 38px;
+		text-align: center;
+		color: #333;
+		font-size: 15px;
+		border-bottom: 1px dotted #E9E9E9;
+	    background-color: #F9F9F9;
+	    border-radius: 2px 2px 0 0;
+	}
+	.rank .rank-content{
+		background: #fff;
+		overflow: hidden;
+		padding: 5px;
+		border: 1px solid #E9E9E9;
+	}
+	.rank .rank-content dd{
+		float: left;
+		padding: 8px;
+		position: relative;
+	}
+	.rank .rank-content img{
+		width: 65px;
+		height: 65px;
+	}
+	.rank .rank-content cite{
+		position: absolute;
+		bottom: 11px;
+	    left: 0;
+	    width: 100%;
+	    height: 20px;
+	    line-height: 20px;
+	    text-align: center;
+	    font-size: 12px;
+	    background-color: rgba(0,0,0,.2);
+	    color: #fff;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+	.rank .rank-content dd{
+		margin-bottom: 10px;
+	}
+	.rank .rank-content dd p{
+		position: absolute;
+		font-size: 12px;
+		color: #333;
+		width: 85%;
+		text-align: center;
+	}
+	.rank .rank-content dd p:hover{
+		color: #999;
+	}
+	.tabs:not(:first-of-type){
+		display: none;
+	}
+	

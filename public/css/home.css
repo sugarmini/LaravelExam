@@ -1,0 +1,150 @@
+*{
+		margin: 0;
+		padding: 0;
+		font-family: "Microsoft YaHei";
+	}
+	a{
+		text-decoration: none;
+	}
+	.top a{
+		color: #fff;
+	}
+	.top a:hover{
+		text-decoration: underline;
+		color: #269f42;
+	}
+	ul{
+		list-style: none;
+	}
+	
+	.main{
+		min-width: 1150px;
+		width: 1150px;
+		margin: 0 auto;
+	}
+	.top{
+		height: 60px;
+		line-height: 60px;
+		background: #24292e;
+		color: #fff;
+	}
+	.top .nav{
+		float: left;
+		width: 500px;
+	}
+	.top .nav img{
+		float: left;
+		position: relative;
+		top: 15px;
+		margin-right: 20px;
+	}
+	.top .nav li{
+		float: left;
+		margin-left: 25px;
+		font-size: 15px;
+	}
+	
+	.content .main{
+		background: #fff;
+		overflow: hidden;
+	}
+	.content .profile{
+		width: 150px;
+		height: 500px;
+		padding-top: 30px;
+		border-right: 1px solid #ccc;
+		float: left;
+	}
+	.button{
+		display: block;
+		background-color: #269f42;
+		color: #fff;
+		border: none;
+		border-radius: 5px;
+		font-size: 14px;
+		cursor: pointer;
+	}
+	.button:hover{
+		opacity: 0.8;
+		filter: Alpha(opacity=80);
+	}
+	.button:focus{
+		outline: none;
+	}
+	.content .profile .button{
+		width: 98px;
+		height: 35px;
+		margin-top: 20px;
+	}
+	.content .profile img{
+		width: 100px;
+	}
+	.content .tab{
+		margin: 30px 0 0 50px;
+		float: left;
+	}
+	.content .tab .tab-title{
+		height: 50px;
+		line-height: 50px;
+		margin-bottom: 20px;
+		border-bottom: 1px solid #ccc;
+	}
+	.content .tab .tab-title li{
+		float: left;
+		margin-right: 30px;
+	}
+	.content .tab .tab-title a{
+		color: #333;
+		font-size: 16px;
+	}
+	.tabs .form-group{
+		width: 500px;
+		height: 50px;
+		line-height: 50px;
+		margin-bottom: 10px;
+	}
+	.tabs .form-group span{
+		margin-right: 10px;
+		color: #333;
+		font-size: 15px;
+		width: 65px;
+		display: inline-block;
+	}
+	.tabs .form-group a{
+		color: #269f42;
+		font-size: 15px;
+		margin-left: 10px;
+	}
+	.tabs .form-group a:hover{
+		text-decoration: underline;
+	}
+	.tabs .button{
+		width: 130px;
+		height: 36px;
+		margin: 25px 0 0 82px;
+	}
+	.tabs .input{
+		border: 1px solid #d1d5da;
+		text-indent: 1em;
+		box-shadow: inset 0 1px 1px rgba(27,31,35,0.075);
+	}
+	.content .tab .tab-content .tabs .form-group input{
+		width: 250px;
+		height: 30px;
+	}
+	.tabs{
+		display: none;
+	}
+	#tab1{
+		display: block;
+	}
+	.nav li .active{
+		color: #269f42;
+	}
+	.select{
+		border-bottom: 2px solid #269f42;
+	}
+	.input-career{
+		display: none;
+		margin-left: 80px;
+	}

@@ -1,0 +1,133 @@
+
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+
+input, button {
+  outline: none;
+  border: none;
+}
+.login-wrap{
+	width:100%;
+	margin:auto;
+	max-width:390px;
+	min-height:455px;
+	position:relative;
+	top: 500px;
+}
+.login-html{
+	width:100%;
+	height:100%;
+	position:absolute;
+	padding:35px 70px 50px 47px;
+	background:#fafbfc;
+	border-radius: 5px;
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	-webkit-transform:rotateY(180deg);
+	        transform:rotateY(180deg);
+	-webkit-backface-visibility:hidden;
+	        backface-visibility:hidden;
+	-webkit-transition:all .4s linear;
+	        transition:all .4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+	display:none;
+}
+.login-html .tab{
+	font-size:22px;
+	margin-right:15px;
+	padding-bottom:5px;
+	margin:10px 15px 20px 0;
+	display:inline-block;
+	border-bottom:2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+	color:#269f42;
+	border-color:#269f42;
+}
+.login-form{
+	min-height:345px;
+	position:relative;
+	-webkit-perspective:1000px;
+	        perspective:1000px;
+	-webkit-transform-style:preserve-3d;
+	        transform-style:preserve-3d;
+}
+.login-form .group{
+	margin-bottom:20px;
+}
+
+.login-form .group .input:focus{
+	outline: none;
+	border-color: #269f42;
+}
+.login-form .group .input,
+.login-form .group .button{
+	width: 296px;
+	padding: 10px 0px 10px 10px;
+	font-size: 15px;
+	border-radius: 5px;
+	border: 1px solid #d1d5da;
+	box-shadow: inset 0 1px 2px rgba(27,31,35,0.075);
+}
+.login-form .group .label{
+	color:#333;
+	font-size:14px;
+	margin-bottom: 5px;
+	display: inline-block;
+    margin-left: 2px;
+}
+.login-form .group .button{
+	display: block;
+	width: 295px;
+	height: 42px;
+	background-color: #269f42;
+	color: #fff;
+	border: none;
+	border-radius: 7px;
+	font-size: 15px;
+	cursor: pointer;
+	margin-top: 30px;
+}
+.login-form .group .button:hover{
+	opacity: 0.8;
+	filter: Alpha(opacity=80);
+}
+
+.login-form .group .check{
+	display: block;
+	float: left;
+	position: relative;
+	top: 4px;
+	width: 15px;
+	height: 15px;
+}
+
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+	-webkit-transform:rotate(0);
+	    -ms-transform:rotate(0);
+	        transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+	-webkit-transform:rotate(0);
+	    -ms-transform:rotate(0);
+	        transform:rotate(0);
+}
+
+.foot-lnk{
+	text-align:center;
+	width: 310px;
+}
+.foot-lnk a{
+	color: #269f42;
+}

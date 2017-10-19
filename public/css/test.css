@@ -1,0 +1,215 @@
+*{
+			margin: 0;
+			padding: 0;
+			font-family: "Microsoft YaHei";
+		}
+		a{
+			text-decoration: none;
+		}
+		.top a{
+			color: #fff;
+		}
+		.top a:hover{
+			text-decoration: underline;
+			color: #269f42;
+		}
+		ul{
+			list-style: none;
+		}
+		
+		.main{
+			min-width: 1150px;
+			width: 1150px;
+			margin: 0 auto;
+		}
+		.top{
+			height: 60px;
+			line-height: 60px;
+			background: #24292e;
+			color: #fff;
+		}
+		.top .nav{
+			float: left;
+			width: 500px;
+		}
+		.top .nav img{
+			float: left;
+			position: relative;
+			top: 15px;
+			margin-right: 20px;
+		}
+		.top .nav li{
+			float: left;
+			margin-left: 25px;
+			font-size: 15px;
+		}
+		.nav li .active{
+			color: #269f42;
+		}
+		
+		.searchbar{
+			margin-top: 20px;
+		}
+		.sievebar {
+		    float: left;
+		    width: 100%;
+		    padding: 15px 0px 0px;
+		    -moz-border-radius: 5px;
+		    -webkit-border-radius: 5px;
+		    border-radius: 5px;
+		    border: 1px solid #e6e9ee;
+		    background-color: #fff;
+		}
+		.sievebar .item {
+		    float: left;
+		    padding-right: 5px;
+		    width: 8.3%;
+		    height: 45px;
+		    line-height: 35px;
+		    text-align: right;
+		    font-weight: 500;
+		    color: #777;
+		}
+		.sievebar .item-special{
+			display: block;
+			width: 8.3%;
+			clear: both;
+		}
+		.sievebar .con {
+		    float: left;
+		    width: 24%;
+		    height: 45px;
+		}
+		.sievebar .contime{
+			width: 33%;
+		}
+		.content .form-control{
+			width: 230px;
+			height: 34px;
+			line-height: 33px;
+			margin-bottom: 10px;
+			text-indent: 1em;
+		}
+		.button{
+			display: block;
+			background-color: #269f42;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			font-size: 14px;
+			cursor: pointer;
+			width: 70px;
+			height: 30px;
+			float: left;
+			margin-right: 30px;
+		}
+		.button:hover{
+			opacity: 0.8;
+			filter: Alpha(opacity=80);
+		}
+		.button:focus{
+			outline: none;
+		}
+		.con.conbtn{
+			margin-top: 10px;
+		}
+		.clearfix{
+			clear: both;
+		}
+		
+		.content .paper{
+			margin-top: 30px;
+		}
+		.content .paper .paper-top{
+			padding: 15px 10px;
+			border: 1px solid #e6e9ee;
+			-moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    border-radius: 3px;
+		}
+		.content .paper .paper-top .papertitle{
+			color: #269f42;
+			font-size: 20px;
+		}
+		.content .paper .paper-top .papertime{
+			color: #333;
+			font-size: 14px;
+			margin-left: 10px;
+		}
+
+		.content .paper .paper-content .paper-menu{
+			width: 300px;
+			float: left;
+			border-left: 1px solid #e6e9ee;
+			padding-left: 25px;
+		}
+		.content .paper .paper-content .paper-ques h1{
+			margin-left: 20px;
+		}
+		.content .paper .paper-content .paper-menu .queList{
+			margin: 15px 0px;
+		}
+		.queList-details{
+			margin: 5px 0 15px;
+		}
+		.content .paper .paper-content .paper-ques{
+			width: 850px;
+			float: left;
+			margin-bottom: 20px;
+			border-left: 1px solid #e6e9ee;
+			border-right: 1px solid #e6e9ee;
+		}
+		.content .paper .paper-content h1{
+			height: 40px;
+			margin: 20px 20px 20px 0px;
+			line-height: 40px;
+			font-size: 16px;
+			text-indent: 12px;
+			background-color: #ebf4ff;
+		}
+		.content .paper .paper-content .paper-ques .select,.short-answers{
+			margin-top: 20px;
+			padding-left: 25px;
+		}
+		.content .paper .paper-content .paper-ques .select h2,p{
+			height: 30px;
+			line-height: 30px;
+		}
+		.green{
+			color: #269f42;
+		}
+		.queList-details span.right {
+		    border-color: #13a654;
+		    color: #13a654;
+		}
+		.queList-details span.active, .queList-details span:hover {
+		    border-color: #13a654!important;
+		    background-color: #13a654!important;
+		    color: #fff!important;
+		}
+		.queList-details>span {
+		    display: inline-block;
+		    width: 24px;
+		    height: 24px;
+		    border: 1px solid #c7c7c7;
+		    text-align: center;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		}
+		section {
+            width: 90%;
+            margin: auto;
+            text-align: left;
+        }
+        #box{
+        	display: none;
+        	text-align: center;
+        }
+        #box div{
+        	margin-top: 50px;
+        }
+        #box .button{
+        	width: 353px;
+        	height: 40px;
+        	margin: 50px 20px 0 20px;
+        }
