@@ -100,7 +100,6 @@
 			outline: none;
 		}
 	</style>
-	<script src="../../../../LaravelExam/public/js/libs/jquery-1.11.1.min.js"></script>
 	<script src="../../../../LaravelExam/public/js/jquery-1.11.3.js"></script>
 	<script src="../../../../LaravelExam/public/js/layer/layer.js"></script>
 	<script>
@@ -133,6 +132,6 @@
 		<input type="button" onclick="{{url('test')}}" value="确认考试">
 	</div>
 	
-	<script src="../js/star.js"></script>
+	<script src="../../../../LaravelExam/public/js/star.js"></script>
 </body>
 </html>

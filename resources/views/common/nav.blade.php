@@ -1,9 +1,7 @@
 <div class="top">
     <div class="main">
         <div class="nav">
-            <a href="index.html">
-                <img src="../images/logo.png" alt="">
-            </a>
+            <img src="../../../../LaravelExam/public/images/logo.png" alt="">
             <ul>
                 <li><a href="#">个人中心</a></li>
                 <li><a href="#" class="active">模拟考试</a></li>

@@ -5,7 +5,7 @@
 	<title>在线考试系统-E学堂</title>
 	<link rel="shortcut icon" href="../../../../LaravelExam/public/images/favicon.ico">
 	<link rel="stylesheet" href="../../../../LaravelExam/public/css/index.css">
-	<link rel="stylesheet" type="text/css" href="../../../../laravelExam/public/css/index-tab.css">
+	<link rel="stylesheet" type="text/css" href="../../../../LaravelExam/public/css/index-tab.css">
 </head>
 <body>
 	<div class="top">
