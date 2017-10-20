@@ -79,7 +79,7 @@
 			margin-left: 20px;
 			font-size: 15px;
 		}
-		input[type=button]{
+		input[type=submit]{
 			display: block;
 			width: 295px;
 			height: 42px;
@@ -92,11 +92,11 @@
 			margin-top: 20px;
 			margin-left: 50px;
 		}
-		input[type=button]:hover{
+		input[type=submit]:hover{
 			opacity: 0.8;
 			filter: Alpha(opacity=80);
 		}
-		input[type=button]:focus{
+		input[type=submit]:focus{
 			outline: none;
 		}
 	</style>
@@ -120,16 +120,20 @@
 		<button onclick="ShowRadioBox()">开始考试</button>
 	</div>
 	<div id="radiobox">
-		<div>
-			<input type="radio" name="time"><span>1个⼩时</span>
-		</div>
-		<div>
-			<input type="radio" name="time"><span>1个半⼩时</span>
-		</div>
-		<div>
-			<input type="radio" name="time"><span>2个⼩时</span>
-		</div>
-		<input type="button" onclick="{{url('test')}}" value="确认考试">
+		<form action="{{url('test')}}" method="post">
+			{{csrf_field()}}
+			<div>
+				<input type="radio" name="time" value="1个⼩时"><span>1个⼩时</span>
+			</div>
+			<div>
+				<input type="radio" name="time" value="1个半⼩时"><span>1个半⼩时</span>
+			</div>
+			<div>
+				<input type="radio" name="time" value="2个⼩时"><span>2个⼩时</span>
+			</div>
+			<input type="submit"  value="确认考试">
+		</form>
+
 	</div>
 	
 	<script src="../../../../LaravelExam/public/js/star.js"></script>

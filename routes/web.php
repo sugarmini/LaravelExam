@@ -19,4 +19,6 @@ Route::group(['middleware' => ['web']],function (){
     Route::any('check',['uses' => 'ExamController@check']);
     Route::any('start',['uses' => 'ExamController@start']);
     Route::any('test',['uses' => 'ExamController@test']);
+    Route::any('home',['uses' => 'ExamController@home']);
+    Route::any('saveInfo',['uses' => 'ExamController@saveInfo']);
 });

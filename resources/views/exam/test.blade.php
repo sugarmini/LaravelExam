@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>在线考试系统-E学堂</title>
-	<link rel="shortcut icon" href="../images/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all">
+	<link rel="shortcut icon" href="../../../../LaravelExam/public/images/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="../../../../LaravelExam/public/css/styles.css" media="all">
 	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-	<link href="../css/froala_editor.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="../css/test.css">
-	<script src="../js/jquery-1.11.3.js"></script>
-	<script type="text/javascript" src="../js/moment.js"></script>
-	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"></script>
+	<link href="../../../../LaravelExam/public/css/froala_editor.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="../../../../LaravelExam/public/css/test.css">
+	<script src="../../../../LaravelExam/public/js/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="../../../../LaravelExam/public/js/moment.js"></script>
+	<script type="text/javascript" src="../../../../LaravelExam/public/js/bootstrap-datetimepicker.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 		    // date time picker
@@ -23,7 +23,7 @@
 		    }
 		})
 	</script>
-	<script src="../js/layer/layer.js"></script>
+	<script src="../../../../LaravelExam/public/js/layer/layer.js"></script>
 	<script>
 		function ShowBox()
 		{
@@ -97,11 +97,7 @@
 
 					<dt class="item item-special">考试时间</dt>
 		            <dd class="con">
-		               <select name="ddlTestTime" id="ddlTestTime" class="form-control valid">
-							<option selected="selected"> 1个⼩时 </option>
-							<option> 1个半⼩时 </option>
-							<option> 2个⼩时 </option>
-						</select>
+						<input name="txtSearchField" type="text" readonly="readonly" id="txtSearchField" class="form-control" value="{{$_POST['time']}}">
 		            </dd>
 
 		            <dt class="item"></dt>
@@ -119,8 +115,8 @@
 			<div class="paper">
 				<div class="paper-top">
 					<span class="papertitle"> web前端开发⼯程师 </span>
-					<span class="papertime"> [ 提交时间：2017-07-20 13:02:19 ] </span>
-				</div>
+					<span class="papertime"> [ 提交时间：{{date("Y-m-d H:i",strtotime("+1 hour"))}} ] </span>
+			</div>
 
 				<div class="paper-content">
 					<div class="paper-menu">
@@ -313,18 +309,18 @@
 		   
 		});
 	</script>
-	<script src="../js/froala_editor.min.js"></script>
+	<script src="../../../../LaravelExam/public/js/froala_editor.min.js"></script>
   <!--[if lt IE 9]>
-    <script src="../js/froala_editor_ie8.min.js"></script>
+    <script src="../../../../LaravelExam/public/js/froala_editor_ie8.min.js"></script>
   <![endif]-->
-  <script src="../js/plugins/tables.min.js"></script>
-  <script src="../js/plugins/lists.min.js"></script>
-  <script src="../js/plugins/colors.min.js"></script>
-  <script src="../js/plugins/media_manager.min.js"></script>
-  <script src="../js/plugins/font_family.min.js"></script>
-  <script src="../js/plugins/font_size.min.js"></script>
-  <script src="../js/plugins/block_styles.min.js"></script>
-  <script src="../js/plugins/video.min.js"></script>
+  <script src="../../../../LaravelExam/public/js/plugins/tables.min.js"></script>
+  <script src="../../../../LaravelExam/public/js/plugins/lists.min.js"></script>
+  <script src="../../../../LaravelExam/public/js/plugins/colors.min.js"></script>
+  <script src="../../../../LaravelExam/public/js/plugins/media_manager.min.js"></script>
+  <script src="../../../../LaravelExam/public/js/plugins/font_family.min.js"></script>
+  <script src="../../../../LaravelExam/public/js/plugins/font_size.min.js"></script>
+  <script src="../../../../LaravelExam/public/js/plugins/block_styles.min.js"></script>
+  <script src="../../../../LaravelExam/public/js/plugins/video.min.js"></script>
 
   <script>
       $(function(){
