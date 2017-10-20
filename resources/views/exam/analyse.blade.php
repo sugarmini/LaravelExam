@@ -7,24 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all">
 	<link rel="stylesheet" href="../css/analyse.css">
 	<script src="../js/jquery-1.11.3.js"></script>
-	</script>
 </head>
 <body>
-	<div class="top">
-		<div class="main">
-			<div class="nav">
-				<a href="index.html">
-					<img src="../images/logo.png" alt="">
-				</a>
-				<ul>
-					<li><a href="#">个人中心</a></li>
-					<li><a href="#">模拟考试</a></li>
-					<li><a href="#" class="active">考试分析</a></li>
-					<li><a href="#">论坛</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	@include('common.nav')
 	
 	<div class="content">
 		<div class="main">
