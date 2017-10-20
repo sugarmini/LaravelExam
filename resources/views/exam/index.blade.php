@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>在线考试系统-E学堂</title>
-	<link rel="shortcut icon" href="../../../../laravelExam/public/images/favicon.ico">
-	<link rel="stylesheet" href="../../../../laravelExam/public/css/index.css">
+	<link rel="shortcut icon" href="../../../../LaravelExam/public/images/favicon.ico">
+	<link rel="stylesheet" href="../../../../LaravelExam/public/css/index.css">
 	<link rel="stylesheet" type="text/css" href="../../../../laravelExam/public/css/index-tab.css">
 </head>
 <body>
@@ -12,11 +12,11 @@
 		<div class="main">
 			<div class="top-left">
 				<a href="index.blade.php">
-					<img src="../../../../laravelExam/public/images/logo.png" alt="">
+					<img src="../../../../LaravelExam/public/images/logo.png" alt="">
 				</a>
 			</div>
 			<div class="top-right">
-				<a href="../../../../laravelExam/resources/views/question/upload.html">内容发布端</a>
+				<a href="../../../../LaravelExam/resources/views/question/upload.html">内容发布端</a>
 				<!-- <span>|</span>
 				<a href="register.html">注册</a> -->
 			</div>
@@ -110,7 +110,7 @@
 			<div class="intro intro1">
 				<div class="main">
 					<div class="intro-left">
-						<img src="../../../../laravelExam/public/images/p1.png" alt="">
+						<img src="../../../../LaravelExam/public/images/p1.png" alt="">
 					</div>
 					<div class="intro-right font">
 						<h1>快</h1>
@@ -128,7 +128,7 @@
 						<p>支持PC、手机、Pad多终端，移动考试随时随地进行。</p>
 					</div>
 					<div class="intro-right">
-						<img src="../../../../laravelExam/public/images/p2.png" alt="">
+						<img src="../../../../LaravelExam/public/images/p2.png" alt="">
 					</div>
 				</div>
 			</div>
@@ -136,7 +136,7 @@
 			<div class="intro intro1">
 				<div class="main">
 					<div class="intro-left">
-						<img src="../../../../laravelExam/public/images/p3.png" alt="">
+						<img src="../../../../LaravelExam/public/images/p3.png" alt="">
 					</div>
 					<div class="intro-right font">
 						<h1>简</h1>
@@ -153,7 +153,7 @@
 						<p>可靠的数据安全,用户关键数据加密存储。核心业务采用高安全的加密策略。</p>
 					</div>
 					<div class="intro-right">
-						<img src="../../../../laravelExam/public/images/p4.png" alt="">
+						<img src="../../../../LaravelExam/public/images/p4.png" alt="">
 					</div>
 				</div>
 			</div>
@@ -241,9 +241,9 @@
 		</div>
 	</div>
 
-	<script src="../../../../laravelExam/public/js/star.js"></script>
-	<script src='../../../../laravelExam/public/js/jquery-1.11.3.js'></script>
-	<script src='../../../../laravelExam/public/js/check-signup.js'></script>
+	<script src='../../../../LaravelExam/public/js/jquery-1.11.3.js'></script>
+	<script src="../../../../LaravelExam/public/js/star.js"></script>
+	<script src='../../../../LaravelExam/public/js/check-signup.js'></script>
 	<script>
 		$('.sign-up').click(
 			function(){

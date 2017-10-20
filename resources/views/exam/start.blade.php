@@ -100,6 +100,7 @@
 			outline: none;
 		}
 	</style>
+	<script src="../../../../LaravelExam/public/js/libs/jquery-1.11.1.min.js"></script>
 	<script src="../../../../LaravelExam/public/js/jquery-1.11.3.js"></script>
 	<script src="../../../../LaravelExam/public/js/layer/layer.js"></script>
 	<script>
