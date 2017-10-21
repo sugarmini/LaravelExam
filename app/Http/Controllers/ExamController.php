@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Level;
+use App\Sort;
+use App\Type;
 use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -43,7 +46,11 @@ Class ExamController extends Controller
             $time = '二个小时';
         else
             $time = '';
-        return view('exam/test')->with('req',$req)->with('time',$time);
+
+        $sorts = Sort::all();
+        $types = Type::all();
+        $levels = Level::all();
+        return view('exam/test')->with(['req' => $req,'time' => $time,'sorts' => $sorts,'types' => $types,'levels' => $levels]);
     }
 
     public function home(){

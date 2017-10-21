@@ -30,7 +30,7 @@
 		            <dt class="item">试题类型</dt>
 		            <dd class="con">
 		                <select name="ddlQuestionType" id="ddlQuestionType" class="form-control valid" disabled>
-							<!-- <option value="Single"> 单选题 </option>
+							<!-- <option value="Single.php"> 单选题 </option>
 							<option value="Multi"> 多选题 </option>
 							<option value="Judge"> 判断题 </option>
 							<option value="Fill"> 填空题 </option>
