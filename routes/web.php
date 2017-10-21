@@ -22,3 +22,5 @@ Route::group(['middleware' => ['web']],function (){
     Route::any('home',['uses' => 'ExamController@home']);
     Route::any('saveInfo',['uses' => 'ExamController@saveInfo']);
 });
+
+Route::any('send',['uses' => 'ExamController@send']);

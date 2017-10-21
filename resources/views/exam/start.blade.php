@@ -123,13 +123,13 @@
 		<form action="{{url('test')}}" method="post">
 			{{csrf_field()}}
 			<div>
-				<input type="radio" name="time" value="1个⼩时"><span>1个⼩时</span>
+				<input type="radio" name="time" value="1" checked="checked"><span>1个⼩时</span>
 			</div>
 			<div>
-				<input type="radio" name="time" value="1个半⼩时"><span>1个半⼩时</span>
+				<input type="radio" name="time" value="1.5"><span>1个半⼩时</span>
 			</div>
 			<div>
-				<input type="radio" name="time" value="2个⼩时"><span>2个⼩时</span>
+				<input type="radio" name="time" value="2"><span>2个⼩时</span>
 			</div>
 			<input type="submit"  value="确认考试">
 		</form>

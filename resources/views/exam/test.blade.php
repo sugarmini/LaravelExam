@@ -97,7 +97,7 @@
 
 					<dt class="item item-special">考试时间</dt>
 		            <dd class="con">
-						<input name="txtSearchField" type="text" readonly="readonly" id="txtSearchField" class="form-control" value="{{$_POST['time']}}">
+						<input name="txtSearchField" type="text" readonly="readonly" id="txtSearchField" class="form-control" value="{{$time}}">
 		            </dd>
 
 		            <dt class="item"></dt>
@@ -115,7 +115,7 @@
 			<div class="paper">
 				<div class="paper-top">
 					<span class="papertitle"> web前端开发⼯程师 </span>
-					<span class="papertime"> [ 提交时间：{{date("Y-m-d H:i",strtotime("+1 hour"))}} ] </span>
+					<span class="papertime"> [ 提交时间：{{date("Y-m-d H:i",time()+$req*60*60)}} ] </span>
 			</div>
 
 				<div class="paper-content">

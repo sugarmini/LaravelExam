@@ -43,15 +43,15 @@
 								<div class="sign-in-htm">
 									<div class="group">
 										<label for="user" class="label" >邮箱</label>
-										<input id="user" type="text" class="input" name="Users[email]">
+										<input id="user" type="text" class="input" name="Users[email]" value="{{$email}}">
 									</div>
 									<div class="group">
 										<label for="pass" class="label">密码</label>
-										<input id="pass" type="password" class="input" data-type="password" name="Users[password]">
+										<input id="pass" type="password" class="input" data-type="password" name="Users[password]" value="{{$remain =='on'?$pwd:""}}">
 									</div>
 									<div class="group">
 										<label>
-											<input id="check" type="checkbox" class="check" checked>
+											<input id="check" type="checkbox" class="check" name="remain" {{$remain == 'on'? "checked":""}}>
 											记住密码
 										</label>
 									</div>

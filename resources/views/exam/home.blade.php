@@ -14,7 +14,7 @@
 			<div class="profile">
 				<a href="#"><img src="../../../../LaravelExam/public/images/user_default.jpg" alt=""></a>
 				<input type="button" value="修改头像" class="button">
-				<input type="button" value="退出登录" class="button">
+				<input type="button" value="退出登录" class="button" onclick="location='{{url('login')}}'">
 			</div>
 			<div class="tab">
 				<div class="tab-title">
@@ -25,9 +25,9 @@
 					</ul>
 				</div>
 				<div class="tab-content">
-					<div id="tab1" class="tabs">
-						<form action="{{url('saveInfo')}}" method="post">
-							{{csrf_field()}}
+                    <form action="{{url('saveInfo')}}" method="post">
+                        <div id="tab1" class="tabs">
+                            {{csrf_field()}}
 							<div class="form-group">
 								<label>
 									<span>昵 称</span>
@@ -56,10 +56,8 @@
 								</label>
 							</div>
 							<input type="submit" value="保存" class="button btn-first">
-						</form>
-					</div>
-					<div id="tab2" class="tabs">
-						<form action="{{url('saveInfo')}}" method="post">
+                        </div>
+					    <div id="tab2" class="tabs">
 							<div class="form-group">
 								<label>
 									<span>原密码</span>
@@ -79,14 +77,12 @@
 								</label>
 							</div>
 							<input type="button" value="保存" class="button">
-						</form>
-					</div>
-					<div id="tab3" class="tabs">
-						<form action="{{url('saveInfo')}}" method="post">
+					    </div>
+					    <div id="tab3" class="tabs">
 							<div class="form-group">
 								<label>
 									<span>原邮箱</span>
-									<input type="email" class="input" readonly="readonly" value="846614172@qq.com">
+									<input type="email" class="input" readonly="readonly" value="{{$info['email']}}">
 								</label>
 							</div>
 							<div class="form-group">
@@ -96,8 +92,8 @@
 								</label>
 							</div>
 							<input type="submit" value="发送邮件" class="button">
-						</form>
-					</div>
+                        </div>
+                    </form>
 				</div>
 			</div>
 		</div>
