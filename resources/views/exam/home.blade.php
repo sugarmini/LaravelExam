@@ -12,9 +12,17 @@
 	<div class="content">
 		<div class="main">
 			<div class="profile">
-				<a href="#"><img src="../../../../LaravelExam/public/images/user_default.jpg" alt=""></a>
-				<button class="button">修改头像</button><input type="file" id="file" class="button">
-				<input type="button" value="退出登录" class="button exit" onclick="location='{{url('login')}}'">
+
+
+				<form id="myForm" action="{{url('home')}}" method="post" enctype="multipart/form-data">
+					{{csrf_field()}}
+					<a href="#"><img src="file://,D:/website/root/userId1.png" alt=""></a>
+					<button class="button">修改头像</button>
+					<input type="file" id="file" name="photo" class="button">
+					<button class="button up_img">上传头像</button>
+					<input type="button" value="退出登录" class="button exit" onclick="location='{{url('login')}}'">
+				</form>
+
 			</div>
 			<div class="tab">
 				<div class="tab-title">

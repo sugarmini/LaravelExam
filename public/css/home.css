@@ -179,3 +179,18 @@
 		display: none;
 		margin-left: 80px;
 	}
+	#file{
+		position: relative;
+		top: -55px;
+		opacity: 0;
+		cursor: pointer;
+	}
+	.up_img{
+		position: relative;
+		top: -50px;
+	}
+	.exit{
+		position: relative;
+		top: -50px;
+		left: 0;
+	}
