@@ -19,13 +19,13 @@ Class ExamController extends Controller
     public function check(Request $request)
     {
         $data = $request->input('Users');
-        $ema = $data['email'];
-        $pwd = $data['password'];
-        session(['email' => $ema,'remain' => $request->input('remain')]);
+        session(['email' => $data['email']]);
+        session(['password' => $data['password']]);
+        session(['remain' => $request->input('remain')]);
         if ( session('remain')== 'on'){
-            session(['pwd' => $pwd]);
+            session(['pwd' => session('password')]);
         }
-        $res = Users::where(['email' => $ema, 'password' => $pwd])->first() ;
+        $res = Users::where(['email' => session('email'), 'password' => session('password')])->first() ;
         session(['id' => $res->id]);
         if ($res)
             return redirect('start');
@@ -52,12 +52,12 @@ Class ExamController extends Controller
         $types = Type::all();
         $levels = Level::all();
         $job = Users::find(session('id'))->job;
+        $data = $request->input('ddlTestType',' ');
         if ($request->input('ddlTestType')){
-            $data = $request->input('ddlTestType');
             $sort_id = Sort::where(['subject' => $data])->first()->id;
         }
         else{
-            $sort_id = Sort::where(['subject' => $job])->first()->id;
+            $sort_id = 1;
         }
         $papers = Question::where(['sort_id' => $sort_id])->get();
         return view('exam/test')->with(['req' => $req,
@@ -66,14 +66,24 @@ Class ExamController extends Controller
             'types'    => $types,
             'levels'   => $levels,
             'job'      => $job,
-            'papers'    => $papers
+            'papers'    => $papers,
+            'data'     => $data
         ]);
     }
 
-    public function home(){
+    public function home(Request $request){
         $id = session('id');
         $userInfo = Users::find($id);
-        return view('exam/home')->with('info',$userInfo);
+
+        $path = "D:/website/root/";
+        $server_name = $path."userId".$id.".png";
+        if($_FILES['photo']['error']>0) {
+            die("出错了！".$_FILES['photo']['error']);
+        }
+        if(!move_uploaded_file($_FILES['photo']['tmp_name'],$server_name)){
+            $server_name = "../../../../LaravelExam/public/images/user_default.jpg";
+        }
+        return view('exam/home')->with(['info' => $userInfo,'img' => $server_name]);
     }
 
     public function saveInfo(Request $request){
@@ -98,6 +108,10 @@ Class ExamController extends Controller
             $message->to($email)->subject('主题');
         });
             return $flag;
+    }
+
+    public function analyse(){
+        return view('exam/analyse');
     }
 
 

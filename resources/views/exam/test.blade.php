@@ -54,7 +54,7 @@
 						<dd class="con">
 						   <select name="ddlTestType" id="ddlTestType" class="form-control valid">
 								@foreach($sorts as $sort)
-									<option value="{{$sort->subject}}" {{$sort->subject == $job?"selected=''":''}}> {{$sort->subject}} </option>
+									<option value="{{$sort->subject}}" {{$sort->subject == $data ? "selected":""}}> {{$sort->subject}} </option>
 								@endforeach
 							</select>
 						</dd>
