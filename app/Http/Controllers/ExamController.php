@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Level;
+use App\Question;
 use App\Sort;
 use App\Type;
 use App\Users;
@@ -50,7 +51,23 @@ Class ExamController extends Controller
         $sorts = Sort::all();
         $types = Type::all();
         $levels = Level::all();
-        return view('exam/test')->with(['req' => $req,'time' => $time,'sorts' => $sorts,'types' => $types,'levels' => $levels]);
+        $job = Users::find(session('id'))->job;
+        if ($request->input('ddlTestType')){
+            $data = $request->input('ddlTestType');
+            $sort_id = Sort::where(['subject' => $data])->first()->id;
+        }
+        else{
+            $sort_id = Sort::where(['subject' => $job])->first()->id;
+        }
+        $papers = Question::where(['sort_id' => $sort_id])->get();
+        return view('exam/test')->with(['req' => $req,
+            'time'     => $time,
+            'sorts'    => $sorts,
+            'types'    => $types,
+            'levels'   => $levels,
+            'job'      => $job,
+            'papers'    => $papers
+        ]);
     }
 
     public function home(){
@@ -82,4 +99,6 @@ Class ExamController extends Controller
         });
             return $flag;
     }
+
+
 }

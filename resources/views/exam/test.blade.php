@@ -48,55 +48,58 @@
 		            <dd class="con input">
 		                <input name="txtSearchField" type="text" id="txtSearchField" class="form-control" >
 		            </dd>
-		            <dt class="item">试题分类</dt>
-		            <dd class="con">
-		               <select name="ddlTestType" id="ddlTestType" class="form-control valid">
-                            @foreach($sorts as $sort)
-							    <option selected="selected"> {{$sort->subject}} </option>
-                            @endforeach
-						</select>
-		            </dd>
-		            <dt class="item">试题类型</dt>
-		            <dd class="con">
-		                <select name="ddlQuestionType" id="ddlQuestionType" class="form-control valid">
-							@foreach($types as $type)
-                                <option selected="selected"> {{$type->ty}} </option>
-                            @endforeach
-						</select>
-		            </dd>
-		            <dt class="item">难易度</dt>
-		            <dd class="con">
-		                <select name="ddlDifficulty" id="ddlDifficulty" class="form-control valid">
-							<option value="0" selected="selected">不限难度</option>
-                            @foreach($levels as $level)
-                                <option> {{$level->lev}} </option>
-                            @endforeach
-						</select>
-		            </dd>
+					<form action="{{url('test')}}" method="post">
+						{{csrf_field()}}
+						<dt class="item">试题分类</dt>
+						<dd class="con">
+						   <select name="ddlTestType" id="ddlTestType" class="form-control valid">
+								@foreach($sorts as $sort)
+									<option value="{{$sort->subject}}" {{$sort->subject == $job?"selected=''":''}}> {{$sort->subject}} </option>
+								@endforeach
+							</select>
+						</dd>
+						<dt class="item">试题类型</dt>
+						<dd class="con">
+							<select name="ddlQuestionType" id="ddlQuestionType" class="form-control valid">
+								@foreach($types as $type)
+									<option name="{{$type->ty}}"> {{$type->ty}} </option>
+								@endforeach
+							</select>
+						</dd>
+						<dt class="item">难易度</dt>
+						<dd class="con">
+							<select name="ddlDifficulty" id="ddlDifficulty" class="form-control valid">
+								<option value="0" selected="selected">不限难度</option>
+								@foreach($levels as $level)
+									<option> {{$level->lev}} </option>
+								@endforeach
+							</select>
+						</dd>
 
-		            <dt class="item">创建时间</dt>
-		            <dd class="con contime input">
-		                <div class="iDate">
-							<input type="text">
-							 <button type="button" class="addOn"></button>
-						</div>
-						--
-						<div class="iDate">
-							<input type="text">
-							 <button type="button" class="addOn"></button>
-						</div>
-		            </dd>
+						<dt class="item">创建时间</dt>
+						<dd class="con contime input">
+							<div class="iDate">
+								<input type="text">
+								 <button type="button" class="addOn"></button>
+							</div>
+							--
+							<div class="iDate">
+								<input type="text">
+								 <button type="button" class="addOn"></button>
+							</div>
+						</dd>
 
-					<dt class="item item-special">考试时间</dt>
-		            <dd class="con">
-						<input name="txtSearchField" type="text" readonly="readonly" id="txtSearchField" class="form-control" value="{{$time}}">
-		            </dd>
+						<dt class="item item-special">考试时间</dt>
+						<dd class="con">
+							<input name="txtSearchField" type="text" readonly="readonly" id="txtSearchField" class="form-control" value="{{$time}}">
+						</dd>
 
-		            <dt class="item"></dt>
-		            <dd class="con conbtn">
-		           		<input type="button" class="button" value="查 询">
-		                <input class="button" type="reset" onclick="window.location=window.location" value="重 置">
-		            </dd>
+						<dt class="item"></dt>
+						<dd class="con conbtn">
+							<input type="submit" class="button" value="查 询">
+							<input class="button" type="reset" onclick="window.location=window.location" value="重 置">
+						</dd>
+					</form>
 		        </dl>
 			</div>
 		</div>
@@ -106,7 +109,7 @@
 		<div class="main">
 			<div class="paper">
 				<div class="paper-top">
-					<span class="papertitle"> web前端开发⼯程师 </span>
+					<span class="papertitle"> {{$job}} </span>
 					<span class="papertime"> [ 提交时间：{{date("Y-m-d H:i",time()+$req*60*60)}} ] </span>
 			</div>
 
@@ -216,43 +219,16 @@
 						<div class="one">
 							<h1>一.单选题 <span> (共 <span class="green"> 5 * 2.00 = 10.00 </span>分)</span></h1>
 							<div class="select">
-								<h2>1.HTML 指的是？</h2>
-								<p><input type="radio" name="option1">A.超文本标记语言（Hyper Text Markup Language）</p>
-								<p><input type="radio" name="option1">B.家庭工具标记语言（Home Tool Markup Language）</p>
-								<p><input type="radio" name="option1">C.超链接和文本标记语言（Hyperlinks and Text Markup Language）</p>
+								<?php $i=1; ?>
+								@foreach($papers as $paper)
+									<h2>{{$i++}}.{{$paper->content}}</h2>
+									<p><input type="radio" name="option1">A.{{$paper->a_option}}</p>
+									<p><input type="radio" name="option1">B.{{$paper->b_option}}</p>
+									<p><input type="radio" name="option1">C.{{$paper->c_option}}</p>
+									<p><input type="radio" name="option1">D.{{$paper->c_option}}</p>
+								@endforeach
 							</div>
-							<div class="select">
-								<h2>2.Web 标准的制定者是？</h2>
-								<p><input type="radio" name="option2">A.微软（Microsoft）</p>
-								<p><input type="radio" name="option2">B.万维网联盟（W3C）</p>
-								<p><input type="radio" name="option2">C.苹果公司（Apple）</p>
-								<p><input type="radio" name="option2">D.谷歌公司（Google）</p>
-							</div>
-							<div class="select">
-								<h2>3.我们在HTML页面中制作了一个图像，想要在鼠标指向这个图像时浮出一条提示信息，应该使用哪个参数做到？</h2>
-								<p><input type="radio" name="option3">A.pop</p>
-								<p><input type="radio" name="option3">B.src</p>
-								<p><input type="radio" name="option3">C.alt</p>
-								<p><input type="radio" name="option3">D.msg</p>
-							</div>
-							<div class="select">
-								<h2>4.哪一个标记用于使HTML文档中表格里的单元格在同行进行合并？</h2>
-								<p><input type="radio" name="option4">A.cellspacing</p>
-								<p><input type="radio" name="option4">B.cellpadding</p>
-								<p><input type="radio" name="option4">C.rowspan</p>
-								<p><input type="radio" name="option4">D.colspan</p>
-							</div>
-							<div class="select">
-								<h2>5.需要创建一个单选框，且和文本关联起来（单击文本就像单击选框一样）。下列 HTML 代码中，正确的是?</h2>
-								<p><input type="radio" name="option5">A.< input type="checkbox" />< label >记住我< /label >
-								</p >
-								<p><input type="radio" name="option5">B.< input type="checkbox" />< label for="checkbox">记住我< /label>
-								</p>
-								<p><input type="radio" name="option5">C.< input type="checkbox" id="c1" />< label>记住我< /label>
-								</p>
-								<p><input type="radio" name="option5">D.< input type="checkbox" id="c1" />< label for="c1">记住我< /label>
-								</p>
-							</div>
+
 						</div>
 
 						<div class="four">
