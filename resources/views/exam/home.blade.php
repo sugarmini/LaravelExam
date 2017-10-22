@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>在线考试系统-E学堂</title>
 	<link rel="shortcut icon" href="../../../../LaravelExam/public/images/favicon.ico">
-	<link rel="stylesheet" href="../../../../LaravelExam/public/css/home.css">
+	<link rel="stylesheet" href="../../../../LaravelExam/public/css/home.css?v=1.0" >
 </head>
 <body>
 	@include('common.nav')
@@ -13,8 +13,8 @@
 		<div class="main">
 			<div class="profile">
 				<a href="#"><img src="../../../../LaravelExam/public/images/user_default.jpg" alt=""></a>
-				<input type="button" value="修改头像" class="button">
-				<input type="button" value="退出登录" class="button" onclick="location='{{url('login')}}'">
+				<button class="button">修改头像</button><input type="file" id="file" class="button">
+				<input type="button" value="退出登录" class="button exit" onclick="location='{{url('login')}}'">
 			</div>
 			<div class="tab">
 				<div class="tab-title">
@@ -67,16 +67,20 @@
 							<div class="form-group">
 								<label>
 									<span>新密码</span>
-									<input type="password" class="input" name="newInfo[email]" placeholder="请输入新密码">
+									<input type="password" class="input auth psd" name="newInfo[email]" placeholder="请输入新密码">
+									<p class="error">长度只能在6-20个字符之间</p>
+
 								</label>
 							</div>
 							<div class="form-group">
 								<label>
 									<span>确认密码</span>
-									<input type="password" class="input" placeholder="请再次输入新密码">
+									<input type="password" class="input re_psd auth" placeholder="请再次输入新密码">
+									<p class="error">两次密码输入不一致</p>
+
 								</label>
 							</div>
-							<input type="button" value="保存" class="button">
+							<input type="button" value="保存" class="button save_psd">
 					    </div>
 					    <div id="tab3" class="tabs">
 							<div class="form-group">
@@ -101,6 +105,8 @@
 
 	<script src="../../../../LaravelExam/public/js/jquery-1.11.3.js"></script>
 	<script>
+		$('.first').addClass('active');
+
 		$('.nav ul li').click(function() {
 		    var i = $(this).index();
 		    if (i==0) {
@@ -138,6 +144,45 @@
 				$('.btn-first').animate({marginTop:"-=45px"});
 			}
 		});
-	</script>
+
+		$('.auth').data({'s':0});
+		$('.psd').blur(function(){
+			val=this.value;
+			if (val.length<6||val.length>20) {
+				$(this).data({'s':0});
+				$(this).next().show();
+			}
+			else{
+				$(this).data({'s':1});
+				$(this).next().hide();
+			}
+		});
+
+		$('.re_psd').blur(function(){
+			val1=$('.psd').val();
+			val2=this.value;
+
+			if (val1!=val2) {
+				$(this).data({'s':0});
+				$(this).next().show();
+			}
+			else{
+				$(this).data({'s':1});
+				$(this).next().hide();
+			}
+		});
+
+		$('.save_psd').click(function(){
+			$('input.auth').blur();
+
+			tot=0;
+			$('.auth').each(function(){
+				tot+=$(this).data('s');
+			});
+			if(tot!=2){
+				return false;
+			}
+		});
+		</script>
 </body>
 </html>

@@ -409,6 +409,7 @@
 
 	<script src="../js/jquery-1.11.3.js"></script>
 	<script>
+		$('.fourth').addClass('active');
 		$('.nav ul li').click(function() {
 		    var i = $(this).index();
 		    if (i==0) {

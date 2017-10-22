@@ -16,7 +16,26 @@
 	ul{
 		list-style: none;
 	}
-	
+	#file{
+		position: relative;
+		top: -55px;
+		opacity: 0;
+		cursor: pointer;
+	}
+	.exit{
+		position: relative;
+		top: -50px;
+		left: 0;
+	}
+	p.error{
+		color: #666;
+		position: relative;
+		top: -20px;
+		left: 85px;
+		font-size: 13px;
+		font-weight: bold;
+		display: none;
+	}
 	.main{
 		min-width: 1150px;
 		width: 1150px;
@@ -43,7 +62,17 @@
 		margin-left: 25px;
 		font-size: 15px;
 	}
-	
+#file{
+	position: relative;
+	top: -55px;
+	opacity: 0;
+	cursor: pointer;
+}
+.exit{
+	position: relative;
+	top: -50px;
+	left: 0;
+}
 	.content .main{
 		background: #fff;
 		overflow: hidden;
@@ -64,6 +93,7 @@
 		font-size: 14px;
 		cursor: pointer;
 	}
+	
 	.button:hover{
 		opacity: 0.8;
 		filter: Alpha(opacity=80);
@@ -71,6 +101,7 @@
 	.button:focus{
 		outline: none;
 	}
+	
 	.content .profile .button{
 		width: 98px;
 		height: 35px;

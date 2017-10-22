@@ -260,6 +260,7 @@
 	</div>
 
 	<script>
+		$('.second').addClass('active');
 		$('.nav ul li').click(function() {
 		    var i = $(this).index();
 		    if (i==0) {
