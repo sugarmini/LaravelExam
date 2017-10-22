@@ -5199,7 +5199,7 @@ jQuery.fn.extend({
 	on: function( types, selector, data, fn, /*INTERNAL*/ one ) {
 		var type, origFn;
 
-		// Types can be a map of types/handlers
+		// Type can be a map of types/handlers
 		if ( typeof types === "object" ) {
 			// ( types-Object, selector, data )
 			if ( typeof selector !== "string" ) {
@@ -9948,7 +9948,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 	var parsed = rsingleTag.exec( data ),
 		scripts = !keepScripts && [];
 
-	// Single tag
+	// Single.php tag
 	if ( parsed ) {
 		return [ context.createElement( parsed[1] ) ];
 	}
