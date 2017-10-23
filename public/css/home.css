@@ -163,3 +163,12 @@
 		top: -50px;
 		left: 0;
 	}
+	p.error{
+		color: #666;
+		position: relative;
+		top: -20px;
+		left: 85px;
+		font-size: 13px;
+		font-weight: bold;
+		display: none;
+	}

@@ -15,7 +15,7 @@
 
 				<form action="{{url('home')}}" method="post" enctype="multipart/form-data">
 					{{csrf_field()}}
-					<a href="#"><img src=" {{$img}}" alt=""></a>
+					<a href="#"><img src=" {{$info['img']}}" alt=""></a>
 					<button class="button">修改头像</button>
 					<input type="file" id="file" class="button" name="photo">
 					<button class="button up_img" type="submit">上传头像</button>
@@ -63,27 +63,32 @@
 							</div>
 							<input type="submit" value="保存" class="button btn-first">
                         </div>
-					    <div id="tab2" class="tabs">
+						<div id="tab2" class="tabs">
 							<div class="form-group">
 								<label>
 									<span>原密码</span>
-									<input type="password" class="input" placeholder="请输入原密码">
+									<input type="password" class="input past_psd auth"  placeholder="请输入原密码">
+									<p class="error">密码错误</p>
 								</label>
 							</div>
 							<div class="form-group">
 								<label>
 									<span>新密码</span>
-									<input type="password" class="input" name="newInfo[email]" placeholder="请输入新密码">
+									<input type="password" class="input auth psd" name="newInfo[pwd]" placeholder="请输入新密码">
+									<p class="error">长度只能在6-20个字符之间</p>
+
 								</label>
 							</div>
 							<div class="form-group">
 								<label>
 									<span>确认密码</span>
-									<input type="password" class="input" placeholder="请再次输入新密码">
+									<input type="password" class="input re_psd auth" placeholder="请再次输入新密码">
+									<p class="error">两次密码输入不一致</p>
+
 								</label>
 							</div>
-							<input type="button" value="保存" class="button">
-					    </div>
+							<input type="submit" value="保存" class="button save_psd">
+						</div>
 					    <div id="tab3" class="tabs">
 							<div class="form-group">
 								<label>
@@ -107,6 +112,7 @@
 
 	<script src="../../../../LaravelExam/public/js/jquery-1.11.3.js"></script>
 	<script>
+		$('.first').addClass('active');
 		$('.nav ul li').click(function() {
 		    var i = $(this).index();
 		    if (i==0) {
@@ -144,6 +150,58 @@
 				$('.btn-first').animate({marginTop:"-=45px"});
 			}
 		});
+        $('.auth').data({'s':0});
+        $('.past_psd').blur(function(){
+            val1=$('.past_psd').val();
+            val2='{{$info['password']}}';
+
+            if (val1!=val2) {
+                $(this).data({'s':0});
+                $(this).next().show();
+            }
+            else{
+                $(this).data({'s':1});
+                $(this).next().hide();
+            }
+        });
+
+        $('.psd').blur(function(){
+            val=this.value;
+            if (val.length<6||val.length>20) {
+                $(this).data({'s':0});
+                $(this).next().show();
+            }
+            else{
+                $(this).data({'s':1});
+                $(this).next().hide();
+            }
+        });
+
+        $('.re_psd').blur(function(){
+            val1=$('.psd').val();
+            val2=this.value;
+
+            if (val1!=val2) {
+                $(this).data({'s':0});
+                $(this).next().show();
+            }
+            else{
+                $(this).data({'s':1});
+                $(this).next().hide();
+            }
+        });
+
+        $('.save_psd').click(function(){
+            $('input.auth').blur();
+
+            tot=0;
+            $('.auth').each(function(){
+                tot+=$(this).data('s');
+            });
+            if(tot!=3){
+                return false;
+            }
+        });
 	</script>
 </body>
 </html>

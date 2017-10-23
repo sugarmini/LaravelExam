@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Level;
 use App\Question;
-use App\Sort;
+use App\Subject;
 use App\Type;
 use App\Users;
 use Illuminate\Http\Request;
@@ -48,13 +48,13 @@ Class ExamController extends Controller
         else
             $time = '';
 
-        $sorts = Sort::all();
+        $sorts = Subject::all();
         $types = Type::all();
         $levels = Level::all();
         $job = Users::find(session('id'))->job;
         $data = $request->input('ddlTestType',' ');
         if ($request->input('ddlTestType')){
-            $sort_id = Sort::where(['subject' => $data])->first()->id;
+            $sort_id = Subject::where(['subject' => $data])->first()->id;
         }
         else{
             $sort_id = 1;

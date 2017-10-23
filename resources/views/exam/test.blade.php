@@ -53,8 +53,8 @@
 						<dt class="item">试题分类</dt>
 						<dd class="con">
 						   <select name="ddlTestType" id="ddlTestType" class="form-control valid">
-								@foreach($sorts as $sort)
-									<option value="{{$sort->subject}}" {{$sort->subject == $data ? "selected":""}}> {{$sort->subject}} </option>
+								@foreach($subjects as $subject)
+									<option value="{{$subject->subject}}" {{($subject->subject == $data) ? "selected":""}}> {{$subject->subject}} </option>
 								@endforeach
 							</select>
 						</dd>
@@ -219,13 +219,13 @@
 						<div class="one">
 							<h1>一.单选题 <span> (共 <span class="green"> 5 * 2.00 = 10.00 </span>分)</span></h1>
 							<div class="select">
-								<?php $i=1; ?>
-								@foreach($papers as $paper)
-									<h2>{{$i++}}.{{$paper->content}}</h2>
-									<p><input type="radio" name="option1">A.{{$paper->a_option}}</p>
-									<p><input type="radio" name="option1">B.{{$paper->b_option}}</p>
-									<p><input type="radio" name="option1">C.{{$paper->c_option}}</p>
-									<p><input type="radio" name="option1">D.{{$paper->c_option}}</p>
+								<?php $i=1;?>
+								@foreach($questions as $question)
+									<h2>{{$i++.'.'.$question->content}}</h2>
+									<p><input type="radio" name="option1">A.{{$question->a_option}}</p>
+									<p><input type="radio" name="option1">B.{{$question->b_option}}</p>
+									<p><input type="radio" name="option1">C.{{$question->c_option}}</p>
+									<p><input type="radio" name="option1">D.{{$question->d_option}}</p>
 								@endforeach
 							</div>
 
@@ -260,6 +260,7 @@
 	</div>
 
 	<script>
+        $('.second').addClass('active');
 		$('.nav ul li').click(function() {
 		    var i = $(this).index();
 		    if (i==0) {

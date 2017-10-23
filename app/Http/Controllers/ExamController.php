@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Level;
+use App\Paper;
+use App\PaperInfo;
+use App\PaperManage;
 use App\Question;
-use App\Sort;
+use App\SingleQ;
+use App\Subject;
 use App\Type;
 use App\Users;
 use Illuminate\Http\Request;
@@ -48,25 +52,28 @@ Class ExamController extends Controller
         else
             $time = '';
 
-        $sorts = Sort::all();
+        $subjects = Subject::all();
         $types = Type::all();
         $levels = Level::all();
         $job = Users::find(session('id'))->job;
         $data = $request->input('ddlTestType',' ');
-        if ($request->input('ddlTestType')){
-            $sort_id = Sort::where(['subject' => $data])->first()->id;
+        $subject_no = Subject::where(['subject' => $data])->first()->sub_no;
+        $paper_no = PaperInfo::where(['paper_sub' => $subject_no])->first()->paper_no;
+        $ques = PaperManage::where(['paper_no' => $paper_no])->get();
+        $questions = array();
+        $i=0;
+        foreach ($ques as $que){
+            if ($que->que_type == 1){
+                $questions[$i++] = SingleQ::find($que->que_no);
+            }
         }
-        else{
-            $sort_id = 1;
-        }
-        $papers = Question::where(['sort_id' => $sort_id])->get();
         return view('exam/test')->with(['req' => $req,
             'time'     => $time,
-            'sorts'    => $sorts,
+            'subjects'    => $subjects,
             'types'    => $types,
             'levels'   => $levels,
             'job'      => $job,
-            'papers'    => $papers,
+            'questions'    => $questions,
             'data'     => $data
         ]);
     }
@@ -84,9 +91,11 @@ Class ExamController extends Controller
             }
             if(move_uploaded_file($_FILES['photo']['tmp_name'],$server_name)){
                 $img = "../../../../LaravelExam/public/images/userImg/"."userId".$id.".png";
+                $userInfo->img = $img;
+                $userInfo->save();
             }
         }
-        return view('exam/home')->with(['info' => $userInfo,'img' => $img]);
+        return view('exam/home')->with(['info' => $userInfo]);
     }
 
     public function saveInfo(Request $request){
@@ -95,6 +104,7 @@ Class ExamController extends Controller
         $oldInfo->name = $newInfo['name'];
         $oldInfo->sex = $newInfo['sex'];
         $oldInfo->job = $newInfo['job']?$newInfo['job']:$oldInfo->job;
+        $oldInfo->password = $newInfo['pwd'];
         if ($newInfo['email']){
             $res = $this->send($newInfo['email']);
             /*if ($res){
