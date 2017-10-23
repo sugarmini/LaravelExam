@@ -75,15 +75,18 @@ Class ExamController extends Controller
         $id = session('id');
         $userInfo = Users::find($id);
 
-        $path = "D:/website/root/";
-        $server_name = $path."userId".$id.".png";
-        if($_FILES['photo']['error']>0) {
-            die("出错了！".$_FILES['photo']['error']);
+        $img = "../../../../LaravelExam/public/images/user_default.jpg";
+        if (isset($_FILES['photo']['name'])){
+            $path = "D:/website/LaravelExam/public/images/userImg/";
+            $server_name = $path."userId".$id.".png";
+            if($_FILES['photo']['error']>0) {
+                die("出错了！".$_FILES['photo']['error']);
+            }
+            if(move_uploaded_file($_FILES['photo']['tmp_name'],$server_name)){
+                $img = "../../../../LaravelExam/public/images/userImg/"."userId".$id.".png";
+            }
         }
-        if(!move_uploaded_file($_FILES['photo']['tmp_name'],$server_name)){
-            $server_name = "../../../../LaravelExam/public/images/user_default.jpg";
-        }
-        return view('exam/home')->with(['info' => $userInfo,'img' => $server_name]);
+        return view('exam/home')->with(['info' => $userInfo,'img' => $img]);
     }
 
     public function saveInfo(Request $request){

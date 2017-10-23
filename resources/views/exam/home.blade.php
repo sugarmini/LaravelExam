@@ -13,12 +13,12 @@
 		<div class="main">
 			<div class="profile">
 
-				<form id="myForm" action="{{url('home')}}" method="post" enctype="multipart/form-data">
+				<form action="{{url('home')}}" method="post" enctype="multipart/form-data">
 					{{csrf_field()}}
-					<a href="#"><img src="file://,D:/website/root/userId1.png" alt=""></a>
+					<a href="#"><img src=" {{$img}}" alt=""></a>
 					<button class="button">修改头像</button>
-					<input type="file" id="file" name="photo" class="button">
-					<button class="button up_img">上传头像</button>
+					<input type="file" id="file" class="button" name="photo">
+					<button class="button up_img" type="submit">上传头像</button>
 					<input type="button" value="退出登录" class="button exit" onclick="location='{{url('login')}}'">
 				</form>
 			</div>
