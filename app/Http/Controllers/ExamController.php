@@ -56,17 +56,19 @@ Class ExamController extends Controller
         $types = Type::all();
         $levels = Level::all();
         $job = Users::find(session('id'))->job;
-        $data = $request->input('ddlTestType',' ');
-        $subject_no = Subject::where(['subject' => $data])->first()->sub_no;
+        $data = $request->input('ddlTestType','');
+        $questions = array();
+        $subject = Subject::where(['subject' => $data])->first();
+        $subject_no = $subject?$subject->sub_no:1;
         $paper_no = PaperInfo::where(['paper_sub' => $subject_no])->first()->paper_no;
         $ques = PaperManage::where(['paper_no' => $paper_no])->get();
-        $questions = array();
         $i=0;
         foreach ($ques as $que){
             if ($que->que_type == 1){
                 $questions[$i++] = SingleQ::find($que->que_no);
             }
         }
+
         return view('exam/test')->with(['req' => $req,
             'time'     => $time,
             'subjects'    => $subjects,
