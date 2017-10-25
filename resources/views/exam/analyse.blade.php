@@ -19,23 +19,11 @@
 		            <dd class="con">
 		               <select name="ddlTestType" id="ddlTestType" class="form-control valid" disabled>
 							<option selected="selected" > web前端开发⼯程师 </option>
-							<!-- <option> Java开发 </option>
-							<option> UI设计 </option>
-							<option> ⼈⼯智能 </option>
-							<option> PHP </option>
-							<option> Web安全攻防 </option>
-							<option> ⼤数据 </option> -->
 						</select>
 		            </dd>
 		            <dt class="item">试题类型</dt>
 		            <dd class="con">
 		                <select name="ddlQuestionType" id="ddlQuestionType" class="form-control valid" disabled>
-							<!-- <option value="Single.php"> 单选题 </option>
-							<option value="Multi"> 多选题 </option>
-							<option value="Judge"> 判断题 </option>
-							<option value="Fill"> 填空题 </option>
-							<option value="Ask"> 简答题 </option>
-							<option value="Program"> 编程题 </option> -->
 							<option value="All" selected="selected"> 综合题 </option>
 						</select>
 		            </dd>
@@ -43,9 +31,6 @@
 		            <dd class="con">
 		                <select name="ddlDifficulty" id="ddlDifficulty" class="form-control valid" disabled>
 							<option value="0" selected="selected">不限难度</option>
-							<!-- <option value="1">容易</option>
-							<option value="2">中等</option>
-							<option value="3">高难度</option> -->
 						</select>
 		            </dd>
 

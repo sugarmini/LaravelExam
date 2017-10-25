@@ -109,7 +109,7 @@
 		<div class="main">
 			<div class="paper">
 				<div class="paper-top">
-					<span class="papertitle"> {{$job}} </span>
+					<span class="papertitle"> {{$data}} </span>
 					<span class="papertime"> [ 提交时间：{{date("Y-m-d H:i",time()+$req*60*60)}} ] </span>
 			</div>
 
