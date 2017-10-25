@@ -12,53 +12,32 @@
 	@include('common.nav')
 	
 	<div class="content">
-		<div class="main">
-			<div class="searchbar">
-				<dl class="sievebar">
-		            <dt class="item">试题分类</dt>
-		            <dd class="con">
-		               <select name="ddlTestType" id="ddlTestType" class="form-control valid" disabled>
-							<option selected="selected" > web前端开发⼯程师 </option>
-						</select>
-		            </dd>
-		            <dt class="item">试题类型</dt>
-		            <dd class="con">
-		                <select name="ddlQuestionType" id="ddlQuestionType" class="form-control valid" disabled>
-							<option value="All" selected="selected"> 综合题 </option>
-						</select>
-		            </dd>
-		            <dt class="item">难易度</dt>
-		            <dd class="con">
-		                <select name="ddlDifficulty" id="ddlDifficulty" class="form-control valid" disabled>
-							<option value="0" selected="selected">不限难度</option>
-						</select>
-		            </dd>
+        <div class="main">
+            <div class="searchbar">
+                <dl class="sievebar">
+                    <dt class="item">试题分类</dt>
+                    <dd class="con">
+                        <input name="txtSearchField" type="text" id="txtSearchField" class="form-control" readonly >
+                    </dd>
+                    <dt class="item">试题类型</dt>
+                    <dd class="con">
+                        <input name="txtSearchField" type="text" id="txtSearchField" class="form-control" readonly >
+                    </dd>
+                    <dt class="item">难易度</dt>
+                    <dd class="con">
+                        <input name="txtSearchField" type="text" id="txtSearchField" class="form-control" readonly >
+                    </dd>
 
-		          <!--   <dt class="item">创建时间</dt>
-		            <dd class="con contime input">
-		                <div class="iDate">
-							<input type="text">
-							 <button type="button" class="addOn"></button>
-						</div>
-						--
-						<div class="iDate">
-							<input type="text">
-							 <button type="button" class="addOn"></button>
-						</div>
-		            </dd> -->
 
-					<dt class="item item-special">考试时间</dt>
-		            <dd class="con">
-		               <select name="ddlTestTime" id="ddlTestTime" class="form-control valid" disabled>
-							<option selected="selected"> 1个⼩时 </option>
-							<!-- <option> 1个半⼩时 </option>
-							<option> 2个⼩时 </option> -->
-						</select>
-		            </dd>
 
-		        </dl>
-			</div>
-		</div>
+                    <dt class="item item-special">考试时间</dt>
+                    <dd class="con">
+                        <input name="txtSearchField" type="text" id="txtSearchField" class="form-control" readonly >
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
 
 		<div class="clearfix"></div>
 		
