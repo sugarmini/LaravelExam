@@ -17,20 +17,19 @@ use Illuminate\Support\Facades\Mail;
 Class ExamController extends Controller
 {
     public function login(){
-        return view('exam/index')->with(['email' => session('email'),'pwd' => session('pwd'),'remain' => session('remain')]);
+        return view('exam/index')->with(['email' => $_COOKIE['email'],'pwd' => isset($_COOKIE['pwd'])?$_COOKIE['pwd']:"",'remain' => isset($_COOKIE['remain'])?$_COOKIE['remain']:""]);
     }
 
     public function check(Request $request)
     {
         $data = $request->input('Users');
-        session(['email' => $data['email']]);
-        session(['password' => $data['password']]);
-        session(['remain' => $request->input('remain')]);
-        if ( session('remain')== 'on'){
-            session(['pwd' => session('password')]);
+        setcookie('email', $data['email']);
+        setcookie('remain', $request->input('remain'));
+        if ( isset($_COOKIE['remain'])){
+            setcookie('pwd' , $data['password']);
         }
-        $res = Users::where(['email' => session('email'), 'password' => session('password')])->first() ;
-        session(['id' => $res->id]);
+        $res = Users::where(['email' => $_COOKIE["email"], 'password' => $_COOKIE['pwd']])->first() ;
+        setcookie('id' , $res->id);
         if ($res)
             return redirect('start');
         else
@@ -55,7 +54,7 @@ Class ExamController extends Controller
         $subjects = Subject::all();
         $types = Type::all();
         $levels = Level::all();
-        $job = Users::find(session('id'))->job;
+        $job = Users::find($_COOKIE['id'])->job;
         $data = $request->input('ddlTestType','');
         $questions = array();
         $subject = Subject::where(['subject' => $data])->first();
@@ -81,7 +80,7 @@ Class ExamController extends Controller
     }
 
     public function home(Request $request){
-        $id = session('id');
+        $id = $_COOKIE['id'];
         $userInfo = Users::find($id);
 
         $img = "../../../../LaravelExam/public/images/user_default.jpg";
@@ -102,7 +101,7 @@ Class ExamController extends Controller
 
     public function saveInfo(Request $request){
         $newInfo = $request->input('newInfo');
-        $oldInfo = Users::find(session('id'));
+        $oldInfo = Users::find($_COOKIE['id']);
         $oldInfo->name = $newInfo['name'];
         $oldInfo->sex = $newInfo['sex'];
         $oldInfo->job = $newInfo['job']?$newInfo['job']:$oldInfo->job;
