@@ -26,7 +26,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="analyse.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="analyse.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/exam/analyse.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-405">
@@ -36,22 +36,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExamController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ExamController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExamController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="134" column="38" lean-forward="true" selection-start-line="134" selection-start-column="38" selection-end-line="134" selection-end-column="38" />
+            <state relative-caret-position="308">
+              <caret line="58" column="50" lean-forward="true" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
               <folding>
                 <element signature="e#323#537#0#PHP" expanded="false" />
                 <element signature="e#543#1082#0#PHP" expanded="false" />
                 <element signature="e#1088#1153#0#PHP" expanded="false" />
-                <element signature="e#1159#2245#0#PHP" expanded="false" />
-                <element signature="e#2251#3055#0#PHP" expanded="false" />
-                <element signature="e#3061#3686#0#PHP" expanded="false" />
-                <element signature="e#3692#3937#0#PHP" expanded="false" />
-                <element signature="e#4947#5291#0#PHP" expanded="false" />
-                <element signature="e#5297#5444#0#PHP" expanded="false" />
+                <element signature="e#2221#3025#0#PHP" expanded="false" />
+                <element signature="e#3031#3656#0#PHP" expanded="false" />
+                <element signature="e#3662#3907#0#PHP" expanded="false" />
+                <element signature="e#3913#4688#0#PHP" expanded="false" />
+                <element signature="e#4694#4911#0#PHP" expanded="false" />
+                <element signature="e#4917#5261#0#PHP" expanded="false" />
+                <element signature="e#5267#5414#0#PHP" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserPaper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/UserPaper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,8 +137,9 @@
         <option value="$PROJECT_DIR$/resources/views/exam/test.blade.php" />
         <option value="$PROJECT_DIR$/app/UserPaper.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ExamController.php" />
         <option value="$PROJECT_DIR$/resources/views/exam/analyse.blade.php" />
+        <option value="$PROJECT_DIR$/app/UserAnswer.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ExamController.php" />
       </list>
     </option>
   </component>
@@ -203,7 +215,7 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -420,12 +432,12 @@
       <workItem from="1508745907508" duration="5759000" />
       <workItem from="1508843220960" duration="4309000" />
       <workItem from="1508982836512" duration="9982000" />
-      <workItem from="1509000724770" duration="4671000" />
+      <workItem from="1509000724770" duration="5836000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114626000" />
+    <option name="totallyTimeSpent" value="115791000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -437,7 +449,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18008785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -479,7 +491,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Student.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Activity.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StudentController.php" />
     <entry file="file://$PROJECT_DIR$/config/session.php">
@@ -651,12 +662,13 @@
             <element signature="e#323#537#0#PHP" expanded="false" />
             <element signature="e#543#1082#0#PHP" expanded="false" />
             <element signature="e#1088#1153#0#PHP" expanded="false" />
-            <element signature="e#1159#2245#0#PHP" expanded="false" />
-            <element signature="e#2251#3055#0#PHP" expanded="false" />
-            <element signature="e#3061#3686#0#PHP" expanded="false" />
-            <element signature="e#3692#3937#0#PHP" expanded="false" />
-            <element signature="e#4947#5291#0#PHP" expanded="false" />
-            <element signature="e#5297#5444#0#PHP" expanded="false" />
+            <element signature="e#2221#3025#0#PHP" expanded="false" />
+            <element signature="e#3031#3656#0#PHP" expanded="false" />
+            <element signature="e#3662#3907#0#PHP" expanded="false" />
+            <element signature="e#3913#4688#0#PHP" expanded="false" />
+            <element signature="e#4694#4911#0#PHP" expanded="false" />
+            <element signature="e#4917#5261#0#PHP" expanded="false" />
+            <element signature="e#5267#5414#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -722,14 +734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/UserPaper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/SingleQ.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -770,29 +774,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExamController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="134" column="38" lean-forward="true" selection-start-line="134" selection-start-column="38" selection-end-line="134" selection-end-column="38" />
-          <folding>
-            <element signature="e#323#537#0#PHP" expanded="false" />
-            <element signature="e#543#1082#0#PHP" expanded="false" />
-            <element signature="e#1088#1153#0#PHP" expanded="false" />
-            <element signature="e#1159#2245#0#PHP" expanded="false" />
-            <element signature="e#2251#3055#0#PHP" expanded="false" />
-            <element signature="e#3061#3686#0#PHP" expanded="false" />
-            <element signature="e#3692#3937#0#PHP" expanded="false" />
-            <element signature="e#4947#5291#0#PHP" expanded="false" />
-            <element signature="e#5297#5444#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/exam/analyse.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-405">
           <caret line="43" column="71" lean-forward="false" selection-start-line="43" selection-start-column="71" selection-end-line="43" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/UserAnswer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/UserPaper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExamController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="58" column="50" lean-forward="true" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
+          <folding>
+            <element signature="e#323#537#0#PHP" expanded="false" />
+            <element signature="e#543#1082#0#PHP" expanded="false" />
+            <element signature="e#1088#1153#0#PHP" expanded="false" />
+            <element signature="e#2221#3025#0#PHP" expanded="false" />
+            <element signature="e#3031#3656#0#PHP" expanded="false" />
+            <element signature="e#3662#3907#0#PHP" expanded="false" />
+            <element signature="e#3913#4688#0#PHP" expanded="false" />
+            <element signature="e#4694#4911#0#PHP" expanded="false" />
+            <element signature="e#4917#5261#0#PHP" expanded="false" />
+            <element signature="e#5267#5414#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
