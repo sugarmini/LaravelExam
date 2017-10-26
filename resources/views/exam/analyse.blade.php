@@ -12,10 +12,7 @@
 	@include('common.nav')
 	
 	<div class="content">
-
-
 		<div class="clearfix"></div>
-		
 		<div class="main">
 			<div class="paper">
 				<div class="paper-top">
@@ -38,39 +35,37 @@
 						<div class="one">
 							<h1>一.单选题 <span> (共 <span class="green"> 5 * 2.00 = 10.00 </span>分)</span></h1>
 							<?php $i=1;?>
-							@foreach($questions as $question)
-
+							@foreach($questions as $key => $question)
 								<div class="select">
-									<h2>{{$i++.".".$question->content}}</h2>
+									<h2>{{$i++.".".$question->content}}
+										<div class="scores">
+											<span class="ng-binding">满分：2.00 分</span>
+											<span>得分：<span class="green ng-binding">{{$que_marks[$key]}}</span> 分</span>
+										</div>
+									</h2>
 									<p><input type="radio" name="option1" disabled>A.{{$question->a_option}}</p>
 									<p><input type="radio" name="option1" disabled>B.{{$question->b_option}}</p>
 									<p><input type="radio" name="option1" disabled>C.{{$question->c_option}}</p>
 									<p><input type="radio" name="option1" disabled>D.{{$question->d_option}}</p>
 									<div class="answerBox" style="display:block;">
-
-										<!-- ngIf: question.answer.length>0 --><div ng-if="question.answer.length>0" class="ng-scope">
-											<span class="answerBox-title">正确答案：</span>
-
-											<!-- ngIf: question._type == 10 || question._type == 11 || question._type == 20 --><div class="answerBox-content clearfix ng-binding ng-scope" ng-if="question._type == 10 || question._type == 11 || question._type == 20">
-												{{$question->answer}}
-											</div><!-- end ngIf: question._type == 10 || question._type == 11 || question._type == 20 -->
-											<!-- ngIf: question._type == 30 -->
-											<!-- ngIf: question._type == 31 || question._type == 40 || question._type == 60 -->
-										</div><!-- end ngIf: question.answer.length>0 -->
-
-										<!-- ngIf: question.tips -->
-
-										<div>
-											<span class="answerBox-title">答案解析：</span>
-
-											<div class="answerBox-content clearfix ng-binding" ng-bind-html="question.memo | empty | to_trusted">{{$question->analyse}}</div>
+										<div class="answerBox" style="display:block;">
+											<span class="answerBox-title">你的答案：
+												<div class="answerBox-content clearfix ng-binding ng-scope" ng-if="question._type == 10 || question._type == 11 || question._type == 20">
+												{{$ans[$key]}}
+												</div>
+											</span>
+											<span class="answerBox-title">正确答案：</span>{{$question->answer}}
 										</div>
+									</div>
+									<div>
+										<span class="answerBox-title">答案解析：</span>
 
+										<div class="answerBox-content clearfix ng-binding" ng-bind-html="question.memo | empty | to_trusted">{{$question->analyse}}</div>
 									</div>
 								</div>
 							@endforeach
 						</div>
-
+					</div>
 						<div class="four">
 							<h1>四.简答题 <span> (共 <span class="green"> 2 * 12.00 = 24.00 </span>分)</span></h1>
 							<div class="short-answers">
@@ -85,12 +80,6 @@
 								</textarea>
 								<textarea name="" id="" cols="110" rows="3" disabled="disabled" style="margin-top: 10px;">你的答案：< !DOCTYPE> 声明位于文档中的最前面的位置，处于 < html > 标签之前。此标签可告知浏览器文档使用哪种 HTML 或 XHTML 规范
 								</textarea>
-								<!-- <section id="editor" disabled>
-							      <div id='edit1' style="margin-top: 30px;">
-							         < !DOCTYPE> 声明位于文档中的最前面的位置，处于 < html > 标签之前。此标签可告知浏览器文档使用哪种 HTML 或 XHTML 规范
-							      </div>
-							 	</section> -->
-
 							</div>
 							<div class="short-answers">
 								<h2>2.如何防止网页中的中文出现乱码?
@@ -104,12 +93,6 @@
 								</textarea>
 								<textarea name="" id="" cols="110" rows="3" disabled="disabled" style="margin-top: 10px;">你的答案：通过meta标签指定字符集, 保证文件保存的字符集和浏览器解析网页时的字符集为同一字符集
 								</textarea>
-								<!-- <section id="editor">
-							      <div id='edit2' style="margin-top: 30px;">
-							         通过meta标签指定字符集, 保证文件保存的字符集和浏览器解析网页时的字符集为同一字符集
-							      </div>
-							 	</section> -->
-
 							</div>
 						</div>
 					</div>
@@ -121,22 +104,6 @@
 
 	<script>
         $('.third').addClass('active');
-		$('.nav ul li').click(function() {
-		    var i = $(this).index();
-		    if (i==0) {
-		    	window.location.href="home.blade.php";
-		    }
-		    else if (i==1) {
-		    	window.location.href="test.html";
-		    }
-		    else if (i==2) {
-		    	window.location.href="analyse.html";
-		    }
-		    else if (i==3) {
-		    	window.location.href="forum.html";
-		    }
-		});
 	</script>
-
 </body>
 </html>

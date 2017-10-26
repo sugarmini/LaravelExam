@@ -43,7 +43,7 @@
 								<div class="sign-in-htm">
 									<div class="group">
 										<label for="user" class="label" >邮箱</label>
-										<input id="user" type="text" class="input" name="Users[email]" value="{{$email}}">
+										<input id="user" type="text" class="input" name="Users[email]" value="{{$email?$email:''}}">
 									</div>
 									<div class="group">
 										<label for="pass" class="label">密码</label>

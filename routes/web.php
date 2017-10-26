@@ -23,6 +23,7 @@ Route::group(['middleware' => ['web']],function (){
     Route::any('saveInfo',['uses' => 'ExamController@saveInfo']);
     Route::any('analyse',['uses' => 'ExamController@analyse']);
     Route::any('paperInfo/{name?}',['uses' => 'ExamController@paperInfo']);
+    Route::any('finish',['uses' => 'ExamController@finish']);
 });
 
 Route::any('send',['uses' => 'ExamController@send']);

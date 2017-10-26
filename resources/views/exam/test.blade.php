@@ -183,76 +183,70 @@
 	                                (共2题，24.00分)
 	                            </div>
 	                            <div class="queList-details">
-	                            <!-- ngRepeat: question in group.items --><span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
+	                            <span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
 	                                1
-	                            </span><!-- end ngRepeat: question in group.items --><span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
+	                            </span><span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
 	                                2
-	                            </span><!-- end ngRepeat: question in group.items -->
+	                            </span>
 	                            </div>
-	                        </li><!-- end ngRepeat: group in vm.questions -->
+	                        </li>
 	                        <li ng-repeat="group in vm.questions" class="ng-scope">
 	                            <div class="queList-title ng-binding">五、程序题
 	                                (共3题，36.00分)
 	                            </div>
 	                            <div class="queList-details">
-	                            <!-- ngRepeat: question in group.items --><span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
+	                            <span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
 	                                1
-	                            </span><!-- end ngRepeat: question in group.items --><span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
+	                            </span><span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
 	                                2
-	                            </span><!-- end ngRepeat: question in group.items --><span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
+	                            </span><span ng-class="vm.questionClass(question)" ng-click="vm.goQuestion(question)" ng-repeat="question in group.items" class="ng-binding ng-scope Subjective">
 	                                3
-	                            </span><!-- end ngRepeat: question in group.items -->
+	                            </span>
 	                            </div>
-	                        </li><!-- end ngRepeat: group in vm.questions -->
+	                        </li>
                    		 </ul>
-
-                   		 <input type="button" onclick="ShowBox()" value="结束考试" class="button">
 					</div>
-					<div id="box">
-						<div>
-							<h2>成绩：</h2>
-						</div>
-						<input type="button" class="button" onclick="window.location.href='analyse.html'" value="考试分析">
-					</div>
-
-					<div class="paper-ques">
-						<div class="one">
-							<h1>一.单选题 <span> (共 <span class="green"> 5 * 2.00 = 10.00 </span>分)</span></h1>
-							<div class="select">
-								<?php $i=1;?>
+					<form action="{{url('finish')}}" method="post">
+						<input type="hidden" name="paper_no" value="{{$paper_no}}">
+						{{csrf_field()}}
+						<div class="paper-ques">
+							<div class="one">
+								<h1>一.单选题 <span> (共 <span class="green"> 5 * 2.00 = 10.00 </span>分)</span></h1>
+                                <?php $i=0;?>
 								@foreach($questions as $question)
-									<h2>{{$i++.'.'.$question->content}}</h2>
-									<p><input type="radio" name="option1">A.{{$question->a_option}}</p>
-									<p><input type="radio" name="option1">B.{{$question->b_option}}</p>
-									<p><input type="radio" name="option1">C.{{$question->c_option}}</p>
-									<p><input type="radio" name="option1">D.{{$question->d_option}}</p>
+									<div class="select">
+										<h2>{{($i+1).'.'.$question->content}}</h2>
+										<p><input type="radio" value="A" name={{"option".$i}}>A.{{$question->a_option}}</p>
+										<p><input type="radio" value="B" name={{"option".$i}}>B.{{$question->b_option}}</p>
+										<p><input type="radio" value="C" name={{"option".$i}}>C.{{$question->c_option}}</p>
+										<p><input type="radio" value="D" name={{"option".$i++}}>D.{{$question->d_option}}</p>
+									</div>
 								@endforeach
 							</div>
 
-						</div>
+							<div class="four">
+								<h1>四.简答题 <span> (共 <span class="green"> 2 * 12.00 = 24.00 </span>分)</span></h1>
+								<div class="short-answers">
+									<h2>1.简述HTML文件中Doctype的作用？</h2>
+									<section id="editor">
+										<div id='edit1' style="margin-top: 30px;">
 
-						<div class="four">
-							<h1>四.简答题 <span> (共 <span class="green"> 2 * 12.00 = 24.00 </span>分)</span></h1>
-							<div class="short-answers">
-								<h2>1.简述HTML文件中Doctype的作用？</h2>
-								<section id="editor">
-							      <div id='edit1' style="margin-top: 30px;">
-							         
-							      </div>
-							 	</section>
+										</div>
+									</section>
 
-							</div>
-							<div class="short-answers">
-								<h2>2.如何防止网页中的中文出现乱码?</h2>
-								<section id="editor">
-							      <div id='edit2' style="margin-top: 30px;">
-							         
-							      </div>
-							 	</section>
+								</div>
+								<div class="short-answers">
+									<h2>2.如何防止网页中的中文出现乱码?</h2>
+									<section id="editor">
+										<div id='edit2' style="margin-top: 30px;">
 
+										</div>
+									</section>
+								</div>
 							</div>
 						</div>
-					</div>
+						<input type="submit" value="结束考试" class="button">
+					</form>
 				</div>
 			</div>
 		</div>
@@ -261,22 +255,6 @@
 
 	<script>
         $('.second').addClass('active');
-		$('.nav ul li').click(function() {
-		    var i = $(this).index();
-		    if (i==0) {
-		    	window.location.href="home.blade.php";
-		    }
-		    else if (i==1) {
-		    	window.location.href="test.blade.php";
-		    }
-		    else if (i==2) {
-		    	window.location.href="analyse.html";
-		    }
-		    else if (i==3) {
-		    	window.location.href="forum.html";
-		    }
-		   
-		});
 	</script>
 	<script src="../../../../LaravelExam/public/js/froala_editor.min.js"></script>
   <!--[if lt IE 9]>
