@@ -10,6 +10,7 @@ use App\Question;
 use App\SingleQ;
 use App\Subject;
 use App\Type;
+use App\UserPaper;
 use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -60,13 +61,7 @@ Class ExamController extends Controller
         $subject = Subject::where(['subject' => $data])->first();
         $subject_no = $subject?$subject->sub_no:1;
         $paper_no = PaperInfo::where(['paper_sub' => $subject_no])->first()->paper_no;
-        $ques = PaperManage::where(['paper_no' => $paper_no])->get();
-        $i=0;
-        foreach ($ques as $que){
-            if ($que->que_type == 1){
-                $questions[$i++] = SingleQ::find($que->que_no);
-            }
-        }
+        $questions = $this->getPaper($paper_no);
 
         return view('exam/test')->with(['req' => $req,
             'time'     => $time,
@@ -124,8 +119,46 @@ Class ExamController extends Controller
             return $flag;
     }
 
-    public function analyse(){
-        return view('exam/analyse');
+    public function analyse($paper_no = null){
+        $id = $_COOKIE['id'];
+        $papers = UserPaper::where(['user_no' => $id])->get();
+        $names = array();
+        $i=0;
+        foreach ($papers as $paper){
+            $names[$i++] = PaperInfo::find($paper->paper_no)->paper_name;
+        }
+        $questions = $paper_no?$this->getPaper($paper_no):$this->getPaper($papers[0]->paper_no);
+        $mark = $paper_no?$this->getMark($_COOKIE['id'],$paper_no):$this->getMark($_COOKIE['id'],$papers[0]->paper_no);
+        $name =$paper_no? PaperInfo::find($paper_no)->paper_name:$names[0];
+        return view('exam/analyse')->with([
+            'names' => $names,
+            'questions' => $questions,
+            'mark' => $mark,
+            'paper_name' => $name]);
+    }
+
+    public function paperInfo(Request $request ){
+        $name = $request->route('name');
+        $paper_no = PaperInfo::where(['paper_name' => $name])->first()->paper_no;
+
+        return $this->analyse($paper_no);
+    }
+
+    public  function getPaper($paper_no){
+        $ques = PaperManage::where(['paper_no' => $paper_no])->get();
+        $questions = array();
+        $i=0;
+        foreach ($ques as $que){
+            if ($que->que_type == 1){
+                $questions[$i++] = SingleQ::find($que->que_no);
+            }
+        }
+
+        return $questions;
+    }
+
+    public function getMark($user_no,$paper_no){
+        return UserPaper::where(['user_no' => $user_no,'paper_no' => $paper_no])->first()->mark;
     }
 
 
