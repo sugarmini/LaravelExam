@@ -57,7 +57,6 @@ Class ExamController extends Controller
         $levels = Level::all();
         $job = Users::find($_COOKIE['id'])->job;
         $data = $request->input('ddlTestType','');
-        $questions = array();
         $subject = Subject::where(['subject' => $data])->first();
         $subject_no = $subject?$subject->sub_no:1;
         $paper_no = PaperInfo::where(['paper_sub' => $subject_no])->first()->paper_no;
