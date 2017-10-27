@@ -27,7 +27,7 @@
 
 						<ol class="queList">
                         	 @foreach($names as $name)
-                             <li><a href="{{url('paperInfo')."/".$name}}">{{$name}}</a></li>
+                             <li><a href="{{url('paperInfo')."/".$name}}" class="{{($name == $paper_name)?"green":""}}">{{$name}}</a></li>
                              @endforeach
                    		 </ol>
 					</div>
@@ -35,19 +35,19 @@
 					<div class="paper-ques">
 						<div class="one">
 							<h1>一.单选题 <span> (共 <span class="green"> 5 * 2.00 = 10.00 </span>分)</span></h1>
-							 <?php $i=1;?>
+							 <?php $i=0;?>
                               @foreach($questions as $key => $question)
 							 <div class="select">
-								 <h2>{{$i++.".".$question->content}}
+								 <h2>{{($i+1).".".$question->content}}
                                     <div class="scores">
                                          <span class="ng-binding">满分：2.00 分</span>
                                          <span>得分：<span class="green ng-binding">{{$que_marks[$key]}}</span> 分</span>
                                     </div>
                                  </h2>
-                                 <p><input type="radio" name="option1" disabled>A.{{$question->a_option}}</p>
-                                 <p><input type="radio" name="option1" disabled>B.{{$question->b_option}}</p>
-                                 <p><input type="radio" name="option1" disabled>C.{{$question->c_option}}</p>
-                                 <p><input type="radio" name="option1" disabled>D.{{$question->d_option}}</p>
+                                 <p><input type="radio" name="option1" {{$question->answer=='A'?"checked":""}}>A.{{$question->a_option}}</p>
+                                 <p><input type="radio" name="option1" {{$question->answer=='B'?"checked":""}}>B.{{$question->b_option}}</p>
+                                 <p><input type="radio" name="option1" {{$question->answer=='C'?"checked":""}}>C.{{$question->c_option}}</p>
+                                 <p><input type="radio" name="option1" {{$question->answer=='D'?"checked":""}}>D.{{$question->d_option}}</p>
 
 	                            <div class="answerBox" style="display:block;">
                                     <div ng-if="question.student_answer.length>0" class="ng-scope">

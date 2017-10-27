@@ -213,3 +213,12 @@
         	height: 40px;
         	margin: 50px 20px 0 20px;
         }
+
+		input.finish{
+			position: absolute;
+			bottom: -470px;
+			left: 25px;
+		}
+		form.father{
+			position: relative;
+		}

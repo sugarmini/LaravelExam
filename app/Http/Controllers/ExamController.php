@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Level;
-use App\Paper;
 use App\PaperInfo;
 use App\PaperManage;
-use App\Question;
 use App\SingleQ;
 use App\Subject;
 use App\Type;
-use App\User;
 use App\UserAnswer;
 use App\UserPaper;
 use App\Users;
@@ -19,6 +16,24 @@ use Illuminate\Support\Facades\Mail;
 
 Class ExamController extends Controller
 {
+    public function register(Request $request){
+        $user = new Users();
+        $user->email = $request->input('email');
+        $user->job = $request->input('career');
+        $user->password = $request->input('password');
+        $user->statu = 0;
+        $user->save();
+        $this->send($user->email,$user->id);
+    }
+
+    public function active(Request $request){
+        $id = $request->route('id');
+        $user = Users::find($id);
+        $user->statu = 1;
+        $user->save();
+        return $this->login();
+    }
+
     public function login(){
         return view('exam/index')->with(['email' =>isset($_COOKIE['email'])?$_COOKIE['email']:" ",'pwd' => isset($_COOKIE['pwd'])?$_COOKIE['pwd']:" ",'remain' => isset($_COOKIE['remain'])?$_COOKIE['remain']:" "]);
     }
@@ -31,12 +46,16 @@ Class ExamController extends Controller
         if ( isset($_COOKIE['remain'])){
             setcookie('pwd' , $data['password']);
         }
-        $res = Users::where(['email' => $_COOKIE["email"], 'password' => $_COOKIE['pwd']])->first() ;
-        setcookie('id' , $res->id);
-        if ($res)
+        $res = Users::where(['email' => $data['email'], 'password' => $data['password']])->first() ;
+
+        if ($res){
+            setcookie('id' , $res->id);
             return redirect('start');
-        else
-            return redirect('login');
+        } else{
+            echo "<script>alert('密码错误')</script>";
+            return $this->login();
+        }
+
     }
 
     public function start(){
@@ -61,13 +80,16 @@ Class ExamController extends Controller
         $data = $request->input('ddlTestType','');
         $subject = Subject::where(['subject' => $data])->first();
         $subject_no = $subject?$subject->sub_no:1;
-        $paper_no = PaperInfo::where(['paper_sub' => $subject_no])->first()->paper_no;
+        $papers = PaperInfo::where(['paper_sub' => $subject_no])->get();
+        $count = $papers->count();
+        $i = rand(0,$count-1);
+        $paper_no = $papers[$i]->paper_no;
         $questions = $this->getPaper($paper_no);
 
         return view('exam/test')->with(['req' => $req,
             'time'     => $time,
             'subjects'    => $subjects,
-            'paper_no' => $paper_no,
+            'paper' => $papers[$i],
             'types'    => $types,
             'levels'   => $levels,
             'job'      => $job,
@@ -76,7 +98,7 @@ Class ExamController extends Controller
         ]);
     }
 
-    public function home(Request $request){
+    public function home(Request $request=null){
         $id = $_COOKIE['id'];
         $userInfo = Users::find($id);
 
@@ -102,23 +124,25 @@ Class ExamController extends Controller
         $oldInfo->name = $newInfo['name'];
         $oldInfo->sex = $newInfo['sex'];
         $oldInfo->job = $newInfo['job']?$newInfo['job']:$oldInfo->job;
-        $oldInfo->password = $newInfo['pwd'];
+        $oldInfo->password = $newInfo['pwd']?$newInfo['pwd']:$oldInfo->password;
         if ($newInfo['email']){
-            $res = $this->send($newInfo['email']);
-            /*if ($res){
-                $oldInfo->email = $newInfo['email']?$newInfo['email']:$oldInfo->email;
-            }*/
+            $res = $this->send($newInfo['email'],$_COOKIE['id']);
+            if ($res == 0){
+                $oldInfo->email = $newInfo['email'];
+            }else{
+                echo "<script>alert('邮箱错误')</script>";
+            }
         }
         $oldInfo->save();
-        return redirect('home');
+        return $this->home();
     }
 
-    public function send($email){
-        $content = '验证';
-        $flag = Mail::send('emails.mail',['content' => $content],function ($message) use($email){
+    public function send($email,$id){
+        $content = 'http://localhost/LaravelExam/public/active/'.$id;
+        Mail::send('emails.mail',['content' => $content],function ($message) use($email){
             $message->to($email)->subject('主题');
         });
-            return $flag;
+        return count(Mail::failures());
     }
 
     public function analyse($paper_no = null){
@@ -166,9 +190,15 @@ Class ExamController extends Controller
 
     public function finish(Request $request){
         $paper_no = $request->input('paper_no');
-        $ques = $this->getPaper($_COOKIE['id'],$paper_no);
+        $input = [
+            'user_no'   => $_COOKIE['id'],
+            'paper_no'  => $paper_no,
+        ];
+        $paper_info = UserPaper::firstOrCreate($input);
+        $ques = $this->getPaper($paper_no);
         $mark = 0;
-        for ($i=0;$i<=1;$i++) {
+        $count = count($ques);
+        for ($i=0;$i<$count;$i++) {
             $sel = $request->input('option' . $i);
             if ($sel == $ques[$i]->answer) {
                 $que_mark = $ques[$i]->mark;
@@ -178,21 +208,16 @@ Class ExamController extends Controller
             $input = [
                 'user_no'   => $_COOKIE['id'],
                 'paper_no'  => $paper_no,
-                'que_no'    => $i + 1,
+                'que_no'    => $i+1,
             ];
             $res = UserAnswer::firstOrCreate($input);
             $res->my_ans = $sel;
             $res->que_mark = $que_mark;
             $res->save();
         }
-        $input = [
-            'user_no'   => $_COOKIE['id'],
-            'paper_no'  => $paper_no,
-        ];
-        $res = UserPaper::firstOrCreate($input);
-        $res->mark = $mark;
-        $res->save();
-        return redirect('analyse');
+        $paper_info->mark = $mark;
+        $paper_info->save();
+        return $this->analyse($paper_no);
     }
 
     public function getAns($user_no,$paper_no){
@@ -217,6 +242,10 @@ Class ExamController extends Controller
 
     public function getMark($user_no,$paper_no){
         return UserPaper::where(['user_no' => $user_no,'paper_no' => $paper_no])->first()->mark;
+    }
+
+    public function forum(){
+        return view('exam/forum');
     }
 
 

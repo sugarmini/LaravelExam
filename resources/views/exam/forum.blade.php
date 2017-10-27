@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>在线考试系统-E学堂</title>
-	<link rel="shortcut icon" href="../images/favicon.ico">
-	<link rel="stylesheet" href="../css/forum.css">
+	<link rel="shortcut icon" href="../../../../LaravelExam/public/images/favicon.ico">
+	<link rel="stylesheet" href="../../../../LaravelExam/public/css/forum.css">
 </head>
 <body>
 	@include('common.nav')
@@ -28,7 +28,7 @@
 								<a href="#">精华帖</a>      
 							</li>
 							<input type="text" placeholder="输入搜索内容，点击搜索">
-							<img src="../images/search.png" alt="">          
+							<img src="../../../../LaravelExam/public/images/search.png" alt="">
 						</ul>  
 					</div> 
 					<div class="tab-content">
@@ -36,7 +36,7 @@
 							<ul class="primary">
 								<li>          
 									<a href="#">            
-										<img src="../images/user.jpg" alt="管理员">
+										<img src="../../../../LaravelExam/public/images/user.jpg" alt="管理员">
 									</a>          
 									<h2>            
 										<a href="#">e学堂 常见问题的处理和实用干货集锦</a>            
@@ -49,17 +49,17 @@
 										<span>技术闲谈</span>  
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 102   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论">102
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 3212  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"> 3212
 											</span>            
 										</span>          
 									</p>        
 								</li>
 								<li>          
 									<a href="#">            
-										<img src="../images/user.jpg" alt="管理员">
+										<img src="../../../../LaravelExam/public/images/user.jpg" alt="管理员">
 									</a>          
 									<h2>            
 										<a href="#">e学堂 官方公告</a>            
@@ -71,10 +71,10 @@
 										<span>官方公告</span>   
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 62   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"> 62
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 1612  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"> 1612
 											</span>            
 										</span>               
 									</p>    
@@ -83,7 +83,7 @@
 							<ul class="normal">
 								<li>          
 									<a href="#">            
-										<img src="../images/LeoZhou.gif" alt="LeoZhou">
+										<img src="../../../../LaravelExam/public/images/LeoZhou.gif" alt="LeoZhou">
 									</a>          
 									<h2>            
 										<a href="#">求助帖： 这道题怎么做？</a>            
@@ -94,17 +94,17 @@
 										<span>技术闲谈</span>  
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 0   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 0
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 7  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"></img> 7
 											</span>            
 										</span>          
 									</p>        
 								</li>
 								<li>          
 									<a href="#">            
-										<img src="../images/en3.jpg" alt="en3">
+										<img src="../../../../LaravelExam/public/images/en3.jpg" alt="en3">
 									</a>          
 									<h2>            
 										<a href="#">关于前端就业的一点建议</a>            
@@ -115,17 +115,17 @@
 										<span>就业</span>   
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 2   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 2
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 23  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"></img> 23
 											</span>            
 										</span>               
 									</p>    
 								</li>
 								<li>          
 									<a href="#">            
-										<img src="../images/akons.jpg" alt="akons">
+										<img src="../../../../LaravelExam/public/images/akons.jpg" alt="akons">
 									</a>          
 									<h2>            
 										<a href="#">radio渲染问题</a>            
@@ -136,17 +136,17 @@
 										<span>技术闲谈</span>   
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 1   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 1
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 43  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"></img> 43
 											</span>            
 										</span>               
 									</p>    
 								</li>
 								<li>          
 									<a href="#">            
-										<img src="../images/嘉恬.jpg" alt="嘉恬">
+										<img src="../../../../LaravelExam/public/images/嘉恬.jpg" alt="嘉恬">
 									</a>          
 									<h2>            
 										<a href="#">tab选项卡能不能加图标问题</a>            
@@ -157,10 +157,10 @@
 										<span>技术闲谈</span>   
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 1   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 1
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 51  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"></img> 51
 											</span>            
 										</span>               
 									</p>    
@@ -171,7 +171,7 @@
 							<ul class="normal">
 								<li>          
 									<a href="#">            
-										<img src="../images/LeoZhou.gif" alt="LeoZhou">
+										<img src="../../../../LaravelExam/public/images/LeoZhou.gif" alt="LeoZhou">
 									</a>          
 									<h2>            
 										<a href="#">求助帖： 这道题怎么做？</a>            
@@ -182,17 +182,17 @@
 										<span>技术闲谈</span>  
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 0   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 0
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 7  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"></img> 7
 											</span>            
 										</span>          
 									</p>        
 								</li>
 								<li>          
 									<a href="#">            
-										<img src="../images/en3.jpg" alt="en3">
+										<img src="../../../../LaravelExam/public/images/en3.jpg" alt="en3">
 									</a>          
 									<h2>            
 										<a href="#">关于前端就业的一点建议</a>            
@@ -203,10 +203,10 @@
 										<span>就业</span>   
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 2   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 2
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 23  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"></img> 23
 											</span>            
 										</span>               
 									</p>    
@@ -224,7 +224,7 @@
 										<span>技术闲谈</span>   
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 1   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 1
 											</span>
 											<span>         
 												<img src="../images/see.png" title="看过"></img> 43  
@@ -234,7 +234,7 @@
 								</li>
 								<li>          
 									<a href="#">            
-										<img src="../images/嘉恬.jpg" alt="嘉恬">
+										<img src="../../../../LaravelExam/public/images/嘉恬.jpg" alt="嘉恬">
 									</a>          
 									<h2>            
 										<a href="#">tab选项卡能不能加图标问题</a>            
@@ -245,10 +245,10 @@
 										<span>技术闲谈</span>   
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 1   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 1
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 51  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"></img> 51
 											</span>            
 										</span>               
 									</p>    
@@ -259,7 +259,7 @@
 							<ul>
 								<li>          
 									<a href="#">            
-										<img src="../images/嘉恬.jpg" alt="嘉恬">
+										<img src="../../../../LaravelExam/public/images/嘉恬.jpg" alt="嘉恬">
 									</a>          
 									<h2>            
 										<a href="#">tab选项卡能不能加图标问题</a>            
@@ -270,10 +270,10 @@
 										<span>技术闲谈</span>   
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 1   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 1
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 51  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"></img> 51
 											</span>            
 										</span>               
 									</p>    
@@ -284,7 +284,7 @@
 							<ul class="primary">
 								<li>          
 									<a href="#">            
-										<img src="../images/user.jpg" alt="管理员">
+										<img src="../../../../LaravelExam/public/images/user.jpg" alt="管理员">
 									</a>          
 									<h2>            
 										<a href="#">e学堂 常见问题的处理和实用干货集锦</a>            
@@ -297,10 +297,10 @@
 										<span>技术闲谈</span>  
 										<span class="hint">
 											<span>
-												<img src="../images/dialog.png" title="评论"></img> 102   
+												<img src="../../../../LaravelExam/public/images/dialog.png" title="评论"></img> 102
 											</span>
 											<span>         
-												<img src="../images/see.png" title="看过"></img> 3212  
+												<img src="../../../../LaravelExam/public/images/see.png" title="看过"></img> 3212
 											</span>            
 										</span>          
 									</p>        
@@ -318,49 +318,49 @@
 						<dl>
 							<dd>
 								<a href="#">
-									<img src="../images/AggerChen.jpg" alt="">
+									<img src="../../../../LaravelExam/public/images/AggerChen.jpg" alt="">
 									<cite>AggerChen</cite>
 									<p>93次回答</p>
 								</a>
 							</dd>
 							<dd>
 								<a href="#">
-									<img src="../images/2.jpg" alt="">
+									<img src="../../../../LaravelExam/public/images/2.jpg" alt="">
 									<cite>2</cite>
 									<p>90次回答</p>
 								</a>
 							</dd>
 							<dd>
 								<a href="#">
-									<img src="../images/3.png" alt="">
+									<img src="../../../../LaravelExam/public/images/3.png" alt="">
 									<cite>3</cite>
 									<p>83次回答</p>
 								</a>
 							</dd>
 							<dd>
 								<a href="#">
-									<img src="../images/4.gif" alt="">
+									<img src="../../../../LaravelExam/public/images/4.gif" alt="">
 									<cite>4</cite>
 									<p>76次回答</p>
 								</a>
 							</dd>
 							<dd>
 								<a href="#">
-									<img src="../images/5.jpg" alt="">
+									<img src="../../../../LaravelExam/public/images/5.jpg" alt="">
 									<cite>5</cite>
 									<p>71次回答</p>
 								</a>
 							</dd>
 							<dd>
 								<a href="#">
-									<img src="../images/6.gif" alt="">
+									<img src="../../../../LaravelExam/public/images/6.gif" alt="">
 									<cite>6</cite>
 									<p>66次回答</p>
 								</a>
 							</dd>
 							<dd>
 								<a href="#">
-									<img src="../images/7.jpg" alt="">
+									<img src="../../../../LaravelExam/public/images/7.jpg" alt="">
 									<cite>7</cite>
 									<p>63次回答</p>
 								</a>
