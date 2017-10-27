@@ -10,6 +10,9 @@ use App\Question;
 use App\SingleQ;
 use App\Subject;
 use App\Type;
+use App\User;
+use App\UserAnswer;
+use App\UserPaper;
 use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -17,20 +20,19 @@ use Illuminate\Support\Facades\Mail;
 Class ExamController extends Controller
 {
     public function login(){
-        return view('exam/index')->with(['email' => session('email'),'pwd' => session('pwd'),'remain' => session('remain')]);
+        return view('exam/index')->with(['email' =>isset($_COOKIE['email'])?$_COOKIE['email']:" ",'pwd' => isset($_COOKIE['pwd'])?$_COOKIE['pwd']:" ",'remain' => isset($_COOKIE['remain'])?$_COOKIE['remain']:" "]);
     }
 
     public function check(Request $request)
     {
         $data = $request->input('Users');
-        session(['email' => $data['email']]);
-        session(['password' => $data['password']]);
-        session(['remain' => $request->input('remain')]);
-        if ( session('remain')== 'on'){
-            session(['pwd' => session('password')]);
+        setcookie('email', $data['email']);
+        setcookie('remain', $request->input('remain'));
+        if ( isset($_COOKIE['remain'])){
+            setcookie('pwd' , $data['password']);
         }
-        $res = Users::where(['email' => session('email'), 'password' => session('password')])->first() ;
-        session(['id' => $res->id]);
+        $res = Users::where(['email' => $_COOKIE["email"], 'password' => $_COOKIE['pwd']])->first() ;
+        setcookie('id' , $res->id);
         if ($res)
             return redirect('start');
         else
@@ -55,23 +57,17 @@ Class ExamController extends Controller
         $subjects = Subject::all();
         $types = Type::all();
         $levels = Level::all();
-        $job = Users::find(session('id'))->job;
+        $job = Users::find($_COOKIE['id'])->job;
         $data = $request->input('ddlTestType','');
-        $questions = array();
         $subject = Subject::where(['subject' => $data])->first();
         $subject_no = $subject?$subject->sub_no:1;
         $paper_no = PaperInfo::where(['paper_sub' => $subject_no])->first()->paper_no;
-        $ques = PaperManage::where(['paper_no' => $paper_no])->get();
-        $i=0;
-        foreach ($ques as $que){
-            if ($que->que_type == 1){
-                $questions[$i++] = SingleQ::find($que->que_no);
-            }
-        }
+        $questions = $this->getPaper($paper_no);
 
         return view('exam/test')->with(['req' => $req,
             'time'     => $time,
             'subjects'    => $subjects,
+            'paper_no' => $paper_no,
             'types'    => $types,
             'levels'   => $levels,
             'job'      => $job,
@@ -81,7 +77,7 @@ Class ExamController extends Controller
     }
 
     public function home(Request $request){
-        $id = session('id');
+        $id = $_COOKIE['id'];
         $userInfo = Users::find($id);
 
         $img = "../../../../LaravelExam/public/images/user_default.jpg";
@@ -102,7 +98,7 @@ Class ExamController extends Controller
 
     public function saveInfo(Request $request){
         $newInfo = $request->input('newInfo');
-        $oldInfo = Users::find(session('id'));
+        $oldInfo = Users::find($_COOKIE['id']);
         $oldInfo->name = $newInfo['name'];
         $oldInfo->sex = $newInfo['sex'];
         $oldInfo->job = $newInfo['job']?$newInfo['job']:$oldInfo->job;
@@ -125,9 +121,105 @@ Class ExamController extends Controller
             return $flag;
     }
 
-    public function analyse(){
-        return view('exam/analyse');
+    public function analyse($paper_no = null){
+        $id = $_COOKIE['id'];
+        $papers = UserPaper::where(['user_no' => $id])->get();
+        $names = array();
+        $i=0;
+        foreach ($papers as $paper){
+            $names[$i++] = PaperInfo::find($paper->paper_no)->paper_name;
+        }
+        $questions = $paper_no?$this->getPaper($paper_no):$this->getPaper($papers[0]->paper_no);
+        $mark = $paper_no?$this->getMark($_COOKIE['id'],$paper_no):$this->getMark($_COOKIE['id'],$papers[0]->paper_no);
+        $name =$paper_no? PaperInfo::find($paper_no)->paper_name:$names[0];
+        $ans = $paper_no?$this->getAns($_COOKIE['id'],$paper_no):$this->getAns($_COOKIE['id'],$papers[0]->paper_no);
+        $que_marks = $paper_no?$this->getQueMark($_COOKIE['id'],$paper_no):$this->getQueMark($_COOKIE['id'],$papers[0]->paper_no);
+        return view('exam/analyse')->with([
+            'names' => $names,
+            'questions' => $questions,
+            'mark' => $mark,
+            'paper_name' => $name,
+            'ans' => $ans,
+            'que_marks' => $que_marks
+        ]);
     }
+
+    public function paperInfo(Request $request ){
+        $name = $request->route('name');
+        $paper_no = PaperInfo::where(['paper_name' => $name])->first()->paper_no;
+
+        return $this->analyse($paper_no);
+    }
+
+    public  function getPaper($paper_no){
+        $ques = PaperManage::where(['paper_no' => $paper_no])->get();
+        $questions = array();
+        $i=0;
+        foreach ($ques as $que){
+            if ($que->que_type == 1){
+                $questions[$i++] = SingleQ::find($que->que_no);
+            }
+        }
+
+        return $questions;
+    }
+
+    public function finish(Request $request){
+        $paper_no = $request->input('paper_no');
+        $ques = $this->getPaper($_COOKIE['id'],$paper_no);
+        $mark = 0;
+        for ($i=0;$i<=1;$i++) {
+            $sel = $request->input('option' . $i);
+            if ($sel == $ques[$i]->answer) {
+                $que_mark = $ques[$i]->mark;
+                $mark += $ques[$i]->mark;
+            } else
+                $que_mark = 0;
+            $input = [
+                'user_no'   => $_COOKIE['id'],
+                'paper_no'  => $paper_no,
+                'que_no'    => $i + 1,
+            ];
+            $res = UserAnswer::firstOrCreate($input);
+            $res->my_ans = $sel;
+            $res->que_mark = $que_mark;
+            $res->save();
+        }
+        $input = [
+            'user_no'   => $_COOKIE['id'],
+            'paper_no'  => $paper_no,
+        ];
+        $res = UserPaper::firstOrCreate($input);
+        $res->mark = $mark;
+        $res->save();
+        return redirect('analyse');
+    }
+
+    public function getAns($user_no,$paper_no){
+        $answers = UserAnswer::where(['user_no'  => $user_no,'paper_no' => $paper_no])->get();
+        $ans = array();
+        $i=0;
+        foreach ($answers as $answer){
+            $ans[$i++] = $answer->my_ans;
+        }
+        return $ans;
+    }
+
+    public function getQueMark($user_no,$paper_no){
+        $que_marks = UserAnswer::where(['user_no'  => $user_no,'paper_no' => $paper_no])->get();
+        $marks = array();
+        $i=0;
+        foreach ($que_marks as $que_mark){
+            $marks[$i++] = $que_mark->que_mark;
+        }
+        return $marks;
+    }
+
+    public function getMark($user_no,$paper_no){
+        return UserPaper::where(['user_no' => $user_no,'paper_no' => $paper_no])->first()->mark;
+    }
+
+
 
 
 }

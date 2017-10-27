@@ -1,0 +1,11 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class UserPaper extends Model{
+    protected $table = 'user_paper';
+    protected $primaryKey = 'no';
+    public $timestamps = false;
+}
