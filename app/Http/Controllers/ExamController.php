@@ -33,12 +33,17 @@ Class ExamController extends Controller
 
     public function active(Request $request){
         $id = $request->route('id');
-        $user = Users::find($id);
-        $user->statu = 1;
-        $user->save();
-        setcookie('id',$id);
-        setcookie('email',$user->email);
-        return $this->home();
+        $time = $request->route('time');
+        if (time()<= ($time+24*60*60)){
+            $user = Users::find($id);
+            $user->statu = 1;
+            $user->save();
+            setcookie('email',$user->email);
+
+        }else{
+            echo "<script>alert('链接已失效，请重新注册');</script>";
+        }
+        return $this->login();
     }
 
     public function login(){
@@ -146,7 +151,8 @@ Class ExamController extends Controller
     }
 
     public function send($email,$id){
-        $content = 'http://localhost/LaravelExam/public/active/'.$id;
+        $time = time();
+        $content = 'http://localhost/LaravelExam/public/active/'.$id."/".$time;
         Mail::send('emails.mail',['content' => $content],function ($message) use($email){
             $message->to($email)->subject('主题');
         });

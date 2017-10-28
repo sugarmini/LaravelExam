@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::group(['middleware' => ['web']],function (){
     Route::any('register',['uses' => 'ExamController@register']);
-    Route::any('active/{id}',['uses' => 'ExamController@active']);
+    Route::any('active/{id}/{time}',['uses' => 'ExamController@active']);
     Route::any('login',['uses' => 'ExamController@login']);
     Route::any('check',['uses' => 'ExamController@check']);
     Route::any('start',['uses' => 'ExamController@start']);
