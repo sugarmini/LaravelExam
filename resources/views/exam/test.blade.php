@@ -76,19 +76,6 @@
 							</select>
 						</dd>
 
-						<dt class="item">创建时间</dt>
-						<dd class="con contime input">
-							<div class="iDate">
-								<input type="text">
-								 <button type="button" class="addOn"></button>
-							</div>
-							--
-							<div class="iDate">
-								<input type="text">
-								 <button type="button" class="addOn"></button>
-							</div>
-						</dd>
-
 						<dt class="item item-special">考试时间</dt>
 						<dd class="con">
 							<input name="txtSearchField" type="text" readonly="readonly" id="txtSearchField" class="form-control" value="{{$time}}">

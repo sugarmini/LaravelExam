@@ -37,40 +37,40 @@
 							<h1>一.单选题 <span> (共 <span class="green"> 5 * 2.00 = 10.00 </span>分)</span></h1>
 							 <?php $i=0;?>
                               @foreach($questions as $key => $question)
-							 <div class="select">
-								 <h2>{{($i+1).".".$question->content}}
-                                    <div class="scores">
-                                         <span class="ng-binding">满分：2.00 分</span>
-                                         <span>得分：<span class="green ng-binding">{{$que_marks[$key]}}</span> 分</span>
-                                    </div>
-                                 </h2>
-                                 <p><input type="radio" name="option1" {{$question->answer=='A'?"checked":""}}>A.{{$question->a_option}}</p>
-                                 <p><input type="radio" name="option1" {{$question->answer=='B'?"checked":""}}>B.{{$question->b_option}}</p>
-                                 <p><input type="radio" name="option1" {{$question->answer=='C'?"checked":""}}>C.{{$question->c_option}}</p>
-                                 <p><input type="radio" name="option1" {{$question->answer=='D'?"checked":""}}>D.{{$question->d_option}}</p>
+								 <div class="select">
+									 <h2>{{($i+1).".".$question->content}}
+										<div class="scores">
+											 <span class="ng-binding">满分：2.00 分</span>
+											 <span>得分：<span class="green ng-binding">{{$que_marks[$key]}}</span> 分</span>
+										</div>
+									 </h2>
+									 <p><input name={{"op".$key}} type="radio" readonly {{$question->answer=='A'?"checked":"disabled"}}>A.{{$question->a_option}}</p>
+									 <p><input name={{"op".$key}} type="radio" readonly {{$question->answer=='B'?"checked":"disabled"}}>B.{{$question->b_option}}</p>
+									 <p><input name={{"op".$key}} type="radio" readonly {{$question->answer=='C'?"checked":"disabled"}}>C.{{$question->c_option}}</p>
+									 <p><input name={{"op".$key}} type="radio" readonly {{$question->answer=='D'?"checked":"disabled"}}>D.{{$question->d_option}}</p>
 
-	                            <div class="answerBox" style="display:block;">
-                                    <div ng-if="question.student_answer.length>0" class="ng-scope">
-    								    <span class="answerBox-title">你的答案：</span>
-    									<div class="answerBox-content clearfix ng-binding ng-scope" ng-if="question._type == 10 || question._type == 11 || question._type == 20">
-    									    {{$ans[$key]}}
-    									</div>
-    								</div>
+									<div class="answerBox" style="display:block;">
+										<div ng-if="question.student_answer.length>0" class="ng-scope">
+											<span class="answerBox-title">你的答案：</span>
+											<div class="answerBox-content clearfix ng-binding ng-scope" ng-if="question._type == 10 || question._type == 11 || question._type == 20">
+												{{$ans[$key]}}
+											</div>
+										</div>
 
-    								 <div ng-if="question.answer.length>0" class="ng-scope">
-                                        <span class="answerBox-title">正确答案：</span>
-                                         <div class="answerBox-content clearfix ng-binding ng-scope" ng-if="question._type == 10 || question._type == 11 || question._type == 20">
-                                             {{$question->answer}}
-                                        </div>
-                                     </div>
-                                     <div>
-                                        <span class="answerBox-title">答案解析：</span>
-                                        <div class="answerBox-content clearfix ng-binding" ng-bind-html="question.memo | empty | to_trusted">
-                                            {{$question->analyse}}
-                                        </div>
-                                     </div>
-                                </div>
-						     </div>
+										 <div ng-if="question.answer.length>0" class="ng-scope">
+											<span class="answerBox-title">正确答案：</span>
+											 <div class="answerBox-content clearfix ng-binding ng-scope" ng-if="question._type == 10 || question._type == 11 || question._type == 20">
+												 {{$question->answer}}
+											</div>
+										 </div>
+										 <div>
+											<span class="answerBox-title">答案解析：</span>
+											<div class="answerBox-content clearfix ng-binding" ng-bind-html="question.memo | empty | to_trusted">
+												{{$question->analyse}}
+											</div>
+										 </div>
+									</div>
+								 </div>
                            @endforeach
 						</div>
 						<div class="four">
