@@ -3,22 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Level;
-use App\Paper;
 use App\PaperInfo;
 use App\PaperManage;
-use App\Question;
 use App\SingleQ;
 use App\Subject;
 use App\Type;
-use App\User;
 use App\UserAnswer;
 use App\UserPaper;
 use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use phpDocumentor\Reflection\Location;
 
 Class ExamController extends Controller
 {
+    public function register(Request $request){
+        $input = [
+            'email' => $request->input('email'),
+            'job'   => $request->input('career'),
+            'password'  => $request->input('password')
+        ];
+        $user = Users::firstOrCreate($input);
+        if ($user)
+            $this->send($request->input('email'),$user->id);
+        $url = $this->gotomail($request->input('email'));
+        return view('exam/active')->with('url',$url);
+    }
+
+    public function active(Request $request){
+        $id = $request->route('id');
+        $user = Users::find($id);
+        $user->statu = 1;
+        $user->save();
+        setcookie('id',$id);
+        setcookie('email',$user->email);
+        return $this->home();
+    }
+
     public function login(){
         return view('exam/index')->with(['email' =>isset($_COOKIE['email'])?$_COOKIE['email']:" ",'pwd' => isset($_COOKIE['pwd'])?$_COOKIE['pwd']:" ",'remain' => isset($_COOKIE['remain'])?$_COOKIE['remain']:" "]);
     }
@@ -28,15 +50,22 @@ Class ExamController extends Controller
         $data = $request->input('Users');
         setcookie('email', $data['email']);
         setcookie('remain', $request->input('remain'));
-        if ( isset($_COOKIE['remain'])){
-            setcookie('pwd' , $data['password']);
+        $res = Users::where(['email' => $data['email'], 'password' => $data['password']])->first() ;
+        if ($res){
+            if ( isset($_COOKIE['remain'])){
+                setcookie('pwd' , $data['password']);
+            }
+            if ($res->statu == 1){
+                 setcookie('id' , $res->id);
+                 return redirect('home');
+            } else{
+                 $url = $this->gotomail($data['email']);
+                 echo "<script>alert('账号未激活，请前往邮箱激活');</script>";
+            }
+        } else{
+            echo "<script>alert('密码错误')</script>";
+            return $this->login();
         }
-        $res = Users::where(['email' => $_COOKIE["email"], 'password' => $_COOKIE['pwd']])->first() ;
-        setcookie('id' , $res->id);
-        if ($res)
-            return redirect('start');
-        else
-            return redirect('login');
     }
 
     public function start(){
@@ -61,13 +90,16 @@ Class ExamController extends Controller
         $data = $request->input('ddlTestType','');
         $subject = Subject::where(['subject' => $data])->first();
         $subject_no = $subject?$subject->sub_no:1;
-        $paper_no = PaperInfo::where(['paper_sub' => $subject_no])->first()->paper_no;
+        $papers = PaperInfo::where(['paper_sub' => $subject_no])->get();
+        $count = $papers->count();
+        $i = rand(0,$count-1);
+        $paper_no = $papers[$i]->paper_no;
         $questions = $this->getPaper($paper_no);
 
         return view('exam/test')->with(['req' => $req,
             'time'     => $time,
             'subjects'    => $subjects,
-            'paper_no' => $paper_no,
+            'paper' => $papers[$i],
             'types'    => $types,
             'levels'   => $levels,
             'job'      => $job,
@@ -76,11 +108,9 @@ Class ExamController extends Controller
         ]);
     }
 
-    public function home(Request $request){
+    public function home(){
         $id = $_COOKIE['id'];
         $userInfo = Users::find($id);
-
-        $img = "../../../../LaravelExam/public/images/user_default.jpg";
         if (isset($_FILES['photo']['name'])){
             $path = "D:/website/LaravelExam/public/images/userImg/";
             $server_name = $path."userId".$id.".png";
@@ -90,9 +120,9 @@ Class ExamController extends Controller
             if(move_uploaded_file($_FILES['photo']['tmp_name'],$server_name)){
                 $img = "../../../../LaravelExam/public/images/userImg/"."userId".$id.".png";
                 $userInfo->img = $img;
-                $userInfo->save();
             }
         }
+        $userInfo->save();
         return view('exam/home')->with(['info' => $userInfo]);
     }
 
@@ -102,46 +132,53 @@ Class ExamController extends Controller
         $oldInfo->name = $newInfo['name'];
         $oldInfo->sex = $newInfo['sex'];
         $oldInfo->job = $newInfo['job']?$newInfo['job']:$oldInfo->job;
-        $oldInfo->password = $newInfo['pwd'];
+        $oldInfo->password = $newInfo['pwd']?$newInfo['pwd']:$oldInfo->password;
         if ($newInfo['email']){
-            $res = $this->send($newInfo['email']);
-            /*if ($res){
-                $oldInfo->email = $newInfo['email']?$newInfo['email']:$oldInfo->email;
-            }*/
+            $res = $this->send($newInfo['email'],$_COOKIE['id']);
+            if ($res == 0){
+                $oldInfo->email = $newInfo['email'];
+            }else{
+                echo "<script>alert('邮箱错误')</script>";
+            }
         }
         $oldInfo->save();
-        return redirect('home');
+        return $this->home();
     }
 
-    public function send($email){
-        $content = '验证';
-        $flag = Mail::send('emails.mail',['content' => $content],function ($message) use($email){
+    public function send($email,$id){
+        $content = 'http://localhost/LaravelExam/public/active/'.$id;
+        Mail::send('emails.mail',['content' => $content],function ($message) use($email){
             $message->to($email)->subject('主题');
         });
-            return $flag;
+        return count(Mail::failures());
     }
 
     public function analyse($paper_no = null){
         $id = $_COOKIE['id'];
         $papers = UserPaper::where(['user_no' => $id])->get();
-        $names = array();
-        $i=0;
-        foreach ($papers as $paper){
-            $names[$i++] = PaperInfo::find($paper->paper_no)->paper_name;
+        if ($papers->count() != 0){
+            $names = array();
+            $i=0;
+            foreach ($papers as $paper){
+                $names[$i++] = PaperInfo::find($paper->paper_no)->paper_name;
+            }
+            $questions = $paper_no?$this->getPaper($paper_no):$this->getPaper($papers[0]->paper_no);
+            $mark = $paper_no?$this->getMark($_COOKIE['id'],$paper_no):$this->getMark($_COOKIE['id'],$papers[0]->paper_no);
+            $name =$paper_no? PaperInfo::find($paper_no)->paper_name:$names[0];
+            $ans = $paper_no?$this->getAns($_COOKIE['id'],$paper_no):$this->getAns($_COOKIE['id'],$papers[0]->paper_no);
+            $que_marks = $paper_no?$this->getQueMark($_COOKIE['id'],$paper_no):$this->getQueMark($_COOKIE['id'],$papers[0]->paper_no);
+            return view('exam/analyse')->with([
+                'names' => $names,
+                'questions' => $questions,
+                'mark' => $mark,
+                'paper_name' => $name,
+                'ans' => $ans,
+                'que_marks' => $que_marks
+            ]);
+        } else{
+            echo "<script>alert('您当前无已做试卷，请先进行考试') ;</script>";
+            return view('exam/start');
         }
-        $questions = $paper_no?$this->getPaper($paper_no):$this->getPaper($papers[0]->paper_no);
-        $mark = $paper_no?$this->getMark($_COOKIE['id'],$paper_no):$this->getMark($_COOKIE['id'],$papers[0]->paper_no);
-        $name =$paper_no? PaperInfo::find($paper_no)->paper_name:$names[0];
-        $ans = $paper_no?$this->getAns($_COOKIE['id'],$paper_no):$this->getAns($_COOKIE['id'],$papers[0]->paper_no);
-        $que_marks = $paper_no?$this->getQueMark($_COOKIE['id'],$paper_no):$this->getQueMark($_COOKIE['id'],$papers[0]->paper_no);
-        return view('exam/analyse')->with([
-            'names' => $names,
-            'questions' => $questions,
-            'mark' => $mark,
-            'paper_name' => $name,
-            'ans' => $ans,
-            'que_marks' => $que_marks
-        ]);
     }
 
     public function paperInfo(Request $request ){
@@ -166,9 +203,15 @@ Class ExamController extends Controller
 
     public function finish(Request $request){
         $paper_no = $request->input('paper_no');
-        $ques = $this->getPaper($_COOKIE['id'],$paper_no);
+        $input = [
+            'user_no'   => $_COOKIE['id'],
+            'paper_no'  => $paper_no,
+        ];
+        $paper_info = UserPaper::firstOrCreate($input);
+        $ques = $this->getPaper($paper_no);
         $mark = 0;
-        for ($i=0;$i<=1;$i++) {
+        $count = count($ques);
+        for ($i=0;$i<$count;$i++) {
             $sel = $request->input('option' . $i);
             if ($sel == $ques[$i]->answer) {
                 $que_mark = $ques[$i]->mark;
@@ -178,21 +221,16 @@ Class ExamController extends Controller
             $input = [
                 'user_no'   => $_COOKIE['id'],
                 'paper_no'  => $paper_no,
-                'que_no'    => $i + 1,
+                'que_no'    => $i+1,
             ];
             $res = UserAnswer::firstOrCreate($input);
             $res->my_ans = $sel;
             $res->que_mark = $que_mark;
             $res->save();
         }
-        $input = [
-            'user_no'   => $_COOKIE['id'],
-            'paper_no'  => $paper_no,
-        ];
-        $res = UserPaper::firstOrCreate($input);
-        $res->mark = $mark;
-        $res->save();
-        return redirect('analyse');
+        $paper_info->mark = $mark;
+        $paper_info->save();
+        return $this->analyse($paper_no);
     }
 
     public function getAns($user_no,$paper_no){
@@ -217,6 +255,61 @@ Class ExamController extends Controller
 
     public function getMark($user_no,$paper_no){
         return UserPaper::where(['user_no' => $user_no,'paper_no' => $paper_no])->first()->mark;
+    }
+
+    //获取邮箱首页
+    public function gotomail($mail){
+        $t=explode('@',$mail);
+        $t=strtolower($t[1]);
+        if($t=='163.com'){
+            return 'https://mail.163.com';
+        }else if($t=='vip.163.com'){
+            return 'https://vip.163.com';
+        }else if($t=='126.com'){
+            return 'https://mail.126.com';
+        }else if($t=='qq.com'||$t=='vip.qq.com'||$t=='foxmail.com'){
+            return 'https://mail.qq.com';
+        }else if($t=='gmail.com'){
+            return 'https://mail.google.com';
+        }else if($t=='sohu.com'){
+            return 'https://mail.sohu.com';
+        }else if($t=='tom.com'){
+            return 'https://mail.tom.com';
+        }else if($t=='vip.sina.com'){
+            return 'https://vip.sina.com';
+        }else if($t=='sina.com.cn'||$t=='sina.com'){
+            return 'https://mail.sina.com.cn';
+        }else if($t=='tom.com'){
+            return 'https://mail.tom.com';
+        }else if($t=='yahoo.com.cn'||$t=='yahoo.cn'){
+            return 'https://mail.cn.yahoo.com';
+        }else if($t=='tom.com'){
+            return 'https://mail.tom.com';
+        }else if($t=='yeah.net'){
+            return 'https://www.yeah.net';
+        }else if($t=='21cn.com'){
+            return 'https://mail.21cn.com';
+        }else if($t=='hotmail.com'){
+            return 'https://www.hotmail.com';
+        }else if($t=='sogou.com'){
+            return 'https://mail.sogou.com';
+        }else if($t=='188.com'){
+            return 'https://www.188.com';
+        }else if($t=='139.com'){
+            return 'https://mail.10086.cn';
+        }else if($t=='189.cn'){
+            return 'https://webmail15.189.cn/webmail';
+        }else if($t=='wo.com.cn'){
+            return 'https://mail.wo.com.cn/smsmail';
+        }else if($t=='139.com'){
+            return 'https://mail.10086.cn';
+        }else {
+            return '';
+        }
+    }
+
+    public function forum(){
+        return view('exam/forum');
     }
 
 

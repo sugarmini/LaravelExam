@@ -76,19 +76,6 @@
 							</select>
 						</dd>
 
-						<dt class="item">创建时间</dt>
-						<dd class="con contime input">
-							<div class="iDate">
-								<input type="text">
-								 <button type="button" class="addOn"></button>
-							</div>
-							--
-							<div class="iDate">
-								<input type="text">
-								 <button type="button" class="addOn"></button>
-							</div>
-						</dd>
-
 						<dt class="item item-special">考试时间</dt>
 						<dd class="con">
 							<input name="txtSearchField" type="text" readonly="readonly" id="txtSearchField" class="form-control" value="{{$time}}">
@@ -109,7 +96,7 @@
 		<div class="main">
 			<div class="paper">
 				<div class="paper-top">
-					<span class="papertitle"> {{$data}} </span>
+					<span class="papertitle"> {{$paper->paper_name}} </span>
 					<span class="papertime"> [ 提交时间：{{date("Y-m-d H:i",time()+$req*60*60)}} ] </span>
 			</div>
 
@@ -206,8 +193,8 @@
 	                        </li>
                    		 </ul>
 					</div>
-					<form action="{{url('finish')}}" method="post">
-						<input type="hidden" name="paper_no" value="{{$paper_no}}">
+					<form action="{{url('finish')}}" method="post" class="father">
+						<input type="hidden" name="paper_no" value="{{$paper->paper_no}}">
 						{{csrf_field()}}
 						<div class="paper-ques">
 							<div class="one">
@@ -219,8 +206,9 @@
 										<p><input type="radio" value="A" name={{"option".$i}}>A.{{$question->a_option}}</p>
 										<p><input type="radio" value="B" name={{"option".$i}}>B.{{$question->b_option}}</p>
 										<p><input type="radio" value="C" name={{"option".$i}}>C.{{$question->c_option}}</p>
-										<p><input type="radio" value="D" name={{"option".$i++}}>D.{{$question->d_option}}</p>
+										<p><input type="radio" value="D" name={{"option".$i}}>D.{{$question->d_option}}</p>
 									</div>
+                                    <?php $i++;?>
 								@endforeach
 							</div>
 
@@ -245,7 +233,7 @@
 								</div>
 							</div>
 						</div>
-						<input type="submit" value="结束考试" class="button">
+						<input type="submit" value="结束考试" class="button finish">
 					</form>
 				</div>
 			</div>

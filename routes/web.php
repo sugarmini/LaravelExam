@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['middleware' => ['web']],function (){
+    Route::any('register',['uses' => 'ExamController@register']);
+    Route::any('active/{id}',['uses' => 'ExamController@active']);
     Route::any('login',['uses' => 'ExamController@login']);
     Route::any('check',['uses' => 'ExamController@check']);
     Route::any('start',['uses' => 'ExamController@start']);
@@ -24,6 +26,7 @@ Route::group(['middleware' => ['web']],function (){
     Route::any('analyse',['uses' => 'ExamController@analyse']);
     Route::any('paperInfo/{name?}',['uses' => 'ExamController@paperInfo']);
     Route::any('finish',['uses' => 'ExamController@finish']);
+    Route::any('forum',['uses' => 'ExamController@forum']);
 });
 
 Route::any('send',['uses' => 'ExamController@send']);

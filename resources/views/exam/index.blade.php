@@ -63,7 +63,8 @@
 									</div>
 								</div>
 							</form>
-							<form action="index.blade.php">
+							<form action="{{url('register')}}" method="post">
+								{{csrf_field()}}
 								<div class="sign-up-htm">
 									<div class="group">
 										<label>

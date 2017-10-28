@@ -1,1 +1,1 @@
-{{$content}},测试邮件
+{{$content}}
