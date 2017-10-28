@@ -38,7 +38,7 @@ Class ExamController extends Controller
         $user->save();
         setcookie('id',$id);
         setcookie('email',$user->email);
-        return $this->home();
+        return $this->login();
     }
 
     public function login(){
