@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>在线考试系统-E学堂</title>
-	<link rel="shortcut icon" href="../images/favicon.ico">
+	<link rel="shortcut icon" href="{{asset('images/favicon.ico')}}">
 	<style>
 		*{
 			margin: 0;
@@ -58,7 +58,7 @@
 <body>
 	@include('common.nav')
 
-	<script src="../js/jquery-1.11.3.js"></script>
+	<script src="{{asset('js/jquery-1.11.3.js')}}"></script>
 	<script>
 		$('.nav ul li').click(function() {
 		    var i = $(this).index();

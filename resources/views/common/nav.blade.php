@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{asset('css/nav.css')}}">
+
 <div class="top">
     <div class="main">
         <div class="nav">

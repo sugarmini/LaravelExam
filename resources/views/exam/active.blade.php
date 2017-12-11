@@ -13,7 +13,7 @@
 			text-decoration: none;
 		}
 		body{
-			background: url("../../../../LaravelExam/public/images/jump.jpg");
+			background: url("/public/images/jump.jpg");
 		}
 		.wrap{
 			width: 400px;

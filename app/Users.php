@@ -10,7 +10,7 @@ class Users extends Model{
     protected $primaryKey = 'id';
     public $timestamps = false;
 
-    protected $fillable = ['email','password','name','sex','job'];
+    protected $fillable = ['email','password','name','sex','job','time'];
 
     public function getDateFormat()
     {

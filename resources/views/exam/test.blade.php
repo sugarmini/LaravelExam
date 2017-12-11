@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>在线考试系统-E学堂</title>
-	<link rel="shortcut icon" href="../../../../LaravelExam/public/images/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="../../../../LaravelExam/public/css/styles.css" media="all">
+	<link rel="shortcut icon" href="{{asset('images/favicon.ico')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}" media="all">
 	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-	<link href="../../../../LaravelExam/public/css/froala_editor.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="../../../../LaravelExam/public/css/test.css">
-	<script src="../../../../LaravelExam/public/js/jquery-1.11.3.js"></script>
-	<script type="text/javascript" src="../../../../LaravelExam/public/js/moment.js"></script>
-	<script type="text/javascript" src="../../../../LaravelExam/public/js/bootstrap-datetimepicker.js"></script>
+	<link href="{{asset('css/froala_editor.min.css')}}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="{{asset('css/test.css')}}">
+	<script src="{{asset('js/jquery-1.11.3.js')}}"></script>
+	<script type="text/javascript" src="{{asset('js/moment.js')}}"></script>
+	<script type="text/javascript" src="{{asset('js/bootstrap-datetimepicker.js')}}"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 		    // date time picker
@@ -23,7 +23,7 @@
 		    }
 		})
 	</script>
-	<script src="../../../../LaravelExam/public/js/layer/layer.js"></script>
+	<script src="{{asset('js/layer/layer.js')}}"></script>
 	<script>
 		function ShowBox()
 		{
@@ -244,18 +244,18 @@
 	<script>
         $('.second').addClass('active');
 	</script>
-	<script src="../../../../LaravelExam/public/js/froala_editor.min.js"></script>
+	<script src="{{asset('')}}js/froala_editor.min.js"></script>
   <!--[if lt IE 9]>
-    <script src="../../../../LaravelExam/public/js/froala_editor_ie8.min.js"></script>
+    <script src="{{asset('')}}js/froala_editor_ie8.min.js"></script>
   <![endif]-->
-  <script src="../../../../LaravelExam/public/js/plugins/tables.min.js"></script>
-  <script src="../../../../LaravelExam/public/js/plugins/lists.min.js"></script>
-  <script src="../../../../LaravelExam/public/js/plugins/colors.min.js"></script>
-  <script src="../../../../LaravelExam/public/js/plugins/media_manager.min.js"></script>
-  <script src="../../../../LaravelExam/public/js/plugins/font_family.min.js"></script>
-  <script src="../../../../LaravelExam/public/js/plugins/font_size.min.js"></script>
-  <script src="../../../../LaravelExam/public/js/plugins/block_styles.min.js"></script>
-  <script src="../../../../LaravelExam/public/js/plugins/video.min.js"></script>
+  <script src="{{asset('js/plugins/tables.min.js')}}"></script>
+  <script src="{{asset('js/plugins/lists.min.js')}}"></script>
+  <script src="{{asset('js/plugins/colors.min.js')}}"></script>
+  <script src="{{asset('js/plugins/media_manager.min.js')}}"></script>
+  <script src="{{asset('js/plugins/font_family.min.js')}}"></script>
+  <script src="{{asset('js/plugins/font_size.min.js')}}"></script>
+  <script src="{{asset('js/plugins/block_styles.min.js')}}"></script>
+  <script src="{{asset('js/plugins/video.min.js')}}"></script>
 
   <script>
       $(function(){

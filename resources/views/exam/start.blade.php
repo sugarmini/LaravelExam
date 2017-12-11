@@ -3,12 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>在线考试系统-E学堂</title>
-	<link rel="shortcut icon" href="../../../../LaravelExam/public/images/favicon.ico">
+	<link rel="shortcut icon" href="{{asset('images/favicon.ico')}}">
 	<style>
 		*{
 			margin: 0;
 			padding: 0;
 			font-family: "Microsoft YaHei";
+			overflow: hidden;
 		}
 		button{
 			outline: none;
@@ -71,6 +72,9 @@
 			margin-bottom: 10px;
 			text-indent: 2em;
 		}
+		#radiobox{
+			display: none;
+		}
 		input[type=radio]{
 			width: 15px;
 			height: 15px;
@@ -100,8 +104,8 @@
 			outline: none;
 		}
 	</style>
-	<script src="../../../../LaravelExam/public/js/jquery-1.11.3.js"></script>
-	<script src="../../../../LaravelExam/public/js/layer/layer.js"></script>
+	<script src="{{asset('js/jquery-1.11.3.js')}}"></script>
+	<script src="{{asset('js/layer/layer.js')}}"></script>
 	<script>
 		function ShowRadioBox()
 		{
@@ -115,6 +119,7 @@
 	</script>
 </head>
 <body>
+
 	<div class="main">
 		<canvas id="canvas"></canvas>
 		<button onclick="ShowRadioBox()">开始考试</button>
@@ -133,9 +138,7 @@
 			</div>
 			<input type="submit"  value="确认考试">
 		</form>
-
 	</div>
-	
-	<script src="../../../../LaravelExam/public/js/star.js"></script>
+	<script src="js/star.js"></script>
 </body>
 </html>

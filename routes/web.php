@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 Route::group(['middleware' => ['web']],function (){
     Route::any('register',['uses' => 'ExamController@register']);
     Route::any('active/{id}/{time}',['uses' => 'ExamController@active']);
@@ -26,7 +26,12 @@ Route::group(['middleware' => ['web']],function (){
     Route::any('analyse',['uses' => 'ExamController@analyse']);
     Route::any('paperInfo/{name?}',['uses' => 'ExamController@paperInfo']);
     Route::any('finish',['uses' => 'ExamController@finish']);
-    Route::any('forum',['uses' => 'ExamController@forum']);
+    Route::any('forum',['uses' => 'ForumController@forum']);
+    Route::any('add',['uses' => 'ForumController@add']);
+    Route::any('addForum',['uses' => 'ForumController@addForum']);
+    Route::any('detail/{id}',['uses' => 'ForumController@detail']);
+    Route::any('comment',['uses' => 'ForumController@comment']);
+    Route::any('search',['uses' => 'ForumController@search']);
 });
 
 Route::any('send',['uses' => 'ExamController@send']);

@@ -13,22 +13,29 @@ use App\UserPaper;
 use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
-use phpDocumentor\Reflection\Location;
 
 Class ExamController extends Controller
 {
     public function register(Request $request){
-        $input = [
-            'email' => $request->input('email'),
-            'job'   => $request->input('career'),
-            'password'  => $request->input('password')
-        ];
-        $user = Users::firstOrCreate($input);
-        if ($user)
-            $this->send($request->input('email'),$user->id);
-        $url = $this->gotomail($request->input('email'));
-        return view('exam/active')->with('url',$url);
+        $email = $request->input('email');
+
+        if (Users::where('email','=',$email)->first()){
+            echo "<script>alert('您已注册过，请去登录');</script>";
+            setcookie('email',$email);
+            return $this->login();
+        }else{
+            $input = [
+                'email' => $email,
+                'job'   => $request->input('career'),
+                'password'  => $request->input('password')
+            ];
+            $user = Users::firstOrCreate($input);
+            if ($user)
+                $this->send($request->input('email'),$user->id);
+            $url = $this->gotomail($request->input('email'));
+            return view('exam/active')->with('url',$url);
+        }
+
     }
 
     public function active(Request $request){
@@ -66,6 +73,8 @@ Class ExamController extends Controller
             } else{
                  $url = $this->gotomail($data['email']);
                  echo "<script>alert('账号未激活，请前往邮箱激活');</script>";
+                $url = $this->gotomail($data['email']);
+                return view('exam/active')->with('url',$url);
             }
         } else{
             echo "<script>alert('密码错误')</script>";
@@ -117,7 +126,7 @@ Class ExamController extends Controller
         $id = $_COOKIE['id'];
         $userInfo = Users::find($id);
         if (isset($_FILES['photo']['name'])){
-            $path = "D:/website/LaravelExam/public/images/userImg/";
+            $path = "../../../../LaravelExam/public/images/userImg/";
             $server_name = $path."userId".$id.".png";
             if($_FILES['photo']['error']>0) {
                 die("出错了！".$_FILES['photo']['error']);
@@ -314,9 +323,7 @@ Class ExamController extends Controller
         }
     }
 
-    public function forum(){
-        return view('exam/forum');
-    }
+
 
 
 

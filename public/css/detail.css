@@ -1,0 +1,197 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑"
+}
+.group a {
+    color: #0a8e6c;
+}
+.group a:hover {
+    text-decoration-line:underline;    
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+li{
+    list-style-type: none;
+}
+.p_tail{
+    float:right;
+}
+.p_tail li{
+    float:left;
+    margin-right:10px;
+}
+body{
+    background: url("/Image/leaf.jpg") no-repeat;
+    background-size: cover;
+}
+.group{
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px;
+}
+.group input {
+    width: 105px;
+    height: 30px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    background: #0a8e6c;
+    color: #fff;
+    float: right;
+    margin-top: 12px;
+}
+.group input:hover{
+    opacity: 0.8;
+}
+.notice{
+    margin:5px 50px;
+    border: 1px solid #ccc;
+    padding: 5px 15px;
+    font-size: 15px;
+    background: #fff;
+    opacity: 0.8;
+}
+.title{
+    border: 3px solid #ccc;
+    text-align: center;
+    padding: 10px;
+}
+.title h1{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.title span{
+    margin-right: 15px;
+}
+.content{
+    background: #fff;
+    opacity: 0.8;
+    padding: 5px 15px;
+    min-height: 540px;
+}
+.comment{
+    margin-top: 50px;
+    height: 100%;
+    background: #fff;
+    padding: 5px 15px;
+}
+.comment .line{
+    border: 1px solid #E5E5E5;
+    overflow: hidden;
+    padding: 20px;
+}
+.line .author{
+    float: left;
+}
+.line .author .icon img{
+    width: 80px;
+    height: 80px;
+}
+.line .author .p_name{
+    text-align: center;
+}
+.line .content_main{
+    float: left;
+    width: 935px;
+    border: 3px solid #eee;
+    margin-left: 20px;
+    padding: 10px;
+}
+.line .content_main .p_content{
+    line-height: 24px;
+    font-size: 14px;
+    word-wrap: break-word;
+    min-height: 100px;
+}
+.line .content_main .core_reply ul{
+    float: right;
+}
+.line .content_main .core_reply .p_tail li{
+    float: left;
+    margin-left: 15px;
+}
+.w_tail li{
+    float: right;
+    margin-left: 20px;
+}
+.reply_content{
+    margin-top: 10px;
+    background: #eee;
+    overflow: hidden;
+}
+.reply_content .people{
+    min-height: 50px;
+}
+.reply_content .people .item{
+    overflow: hidden;
+    margin: 10px;
+    border-bottom: 1px solid #fff;
+}
+.reply_content .item img{
+    width: 37px;
+    height: 37px;
+    float: left;
+}
+.reply_content .item .word{
+    width: 860px;
+    float: left;
+    margin-left: 15px;
+}
+.line span.user{
+    color: #0a8e6c;
+}
+.reply_content .people .item .w_tail{
+    margin: 5px 0;
+    font-size: 14px;
+}
+.reply{
+    color: #0a8e6c;
+    cursor: pointer;
+}
+.clear{
+    clear: both;
+}
+.edit{
+    margin:0 50px;
+    background: #fff;
+    opacity: 0.8;
+}
+.edit input{
+    width: 125px;
+    height: 35px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    background: #0a8e6c;
+    color: #fff;
+    margin: 10px 0 50px 0;
+}
+.edit input:hover{
+    opacity: 0.8;
+}
+
+.reply-input{
+    position: relative;
+    top: 30px;
+    margin-bottom: 30px;
+}
+.reply-input input{
+    width: 760px;
+    height: 30px;
+}
+.reply-input input[type=submit] {
+    width: 80px;
+    height: 35px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    background: #0a8e6c;
+    color: #fff;
+    margin-left: 10px;
+}
+.reply-input a {
+        margin-left: 10px;
+}

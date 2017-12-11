@@ -1,0 +1,38 @@
+.main{
+    min-width: 1150px;
+    width: 1150px;
+    margin: 0 auto;
+}
+.top a{
+    color: #fff;
+}
+.top a:hover{
+    text-decoration: underline;
+    color: #269f42;
+}
+.top{
+    height: 60px;
+    line-height: 60px;
+    background: #24292e;
+    color: #fff;
+    width: 100%;
+}
+.top .nav{
+    float: left;
+    width: 500px;
+
+}
+.top .nav img{
+    float: left;
+    position: relative;
+    top: 15px;
+    margin-right: 20px;
+}
+.top .nav li{
+    float: left;
+    margin-left: 25px;
+    font-size: 15px;
+}
+.nav li .active{
+    color: #269f42;
+}

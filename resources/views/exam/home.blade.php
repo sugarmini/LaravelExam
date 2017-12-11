@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>在线考试系统-E学堂</title>
-	<link rel="shortcut icon" href="../../../../LaravelExam/public/images/favicon.ico">
-	<link rel="stylesheet" href="../../../../LaravelExam/public/css/home.css">
+	<link rel="shortcut icon" href="{{asset('images/favicon.ico')}}">
+	<link rel="stylesheet" href="{{asset('css/home.css')}}">
 </head>
 <body>
 	@include('common.nav')
@@ -110,7 +110,7 @@
 		</div>
 	</div>
 
-	<script src="../../../../LaravelExam/public/js/jquery-1.11.3.js"></script>
+	<script src="{{asset('js/jquery-1.11.3.js')}}"></script>
 	<script>
 		$('.first').addClass('active');
 		$('.nav ul li').click(function() {

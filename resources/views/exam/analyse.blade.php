@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>在线考试系统-E学堂</title>
-    <link rel="shortcut icon" href="../../../../LaravelExam/public/images/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../../../../LaravelExam/public/css/styles.css" media="all">
-    <link rel="stylesheet" href="../../../../LaravelExam/public/css/analyse.css">
-    <script src="../../../../LaravelExam/public/js/jquery-1.11.3.js"></script>
+    <link rel="shortcut icon" href="{{asset('images/favicon.ico')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}" media="all">
+    <link rel="stylesheet" href="{{asset('css/analyse.css')}}">
+    <script src="{{asset('js/jquery-1.11.3.js')}}"></script>
 </head>
 <body>
 	@include('common.nav')
